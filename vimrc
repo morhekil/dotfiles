@@ -14,5 +14,6 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 " Solarized color theme
+let g:solarized_termtrans=1
 set background=light
 colorscheme solarized
