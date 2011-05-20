@@ -34,6 +34,9 @@ set smartcase
 set laststatus=2
 set statusline=%f\ %m%r%h%w\ (%{&ff}){%Y}\ [%l,%v]\ %{fugitive#statusline()}
 
+" Highlighting the current line
+set cursorline
+
 " Hiding Fugitive's buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
