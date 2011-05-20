@@ -32,7 +32,10 @@ set smartcase
 
 "Status line gnarliness
 set laststatus=2
-set statusline=%F%m%r%h%w\ (%{&ff}){%Y}\ [%l,%v][%p%%]
+set statusline=%f\ %m%r%h%w\ (%{&ff}){%Y}\ [%l,%v]\ %{fugitive#statusline()}
+
+" Hiding Fugitive's buffers
+autocmd BufReadPost fugitive://* set bufhidden=delete
 
 syntax on
 
