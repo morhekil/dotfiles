@@ -16,3 +16,6 @@
 [submodule "bundle/vim-surround"]
 	path = bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
+[submodule "bundle/textile.vim"]
+	path = bundle/textile.vim
+	url = https://github.com/timcharper/textile.vim.git

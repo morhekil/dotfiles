@@ -57,6 +57,9 @@ autocmd BufWritePre *.sass :call <SID>StripTrailingWhitespaces()
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
+" Textile support doesn't get auto-loaded for some reason
+au BufRead,BufNewFile *.textile set filetype=textile
+
 " Solarized color theme
 let g:solarized_termtrans=1
 set background=light
