@@ -52,6 +52,7 @@ autocmd BufWritePre *.rb :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.erb :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.haml :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.sass :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.textile :call <SID>StripTrailingWhitespaces()
 
 " Enabling Pathogen.vim for bundles management
 call pathogen#runtime_append_all_bundles()
