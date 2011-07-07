@@ -68,3 +68,11 @@ au BufRead,BufNewFile *.textile set filetype=textile
 let g:solarized_termtrans=1
 set background=light
 colorscheme solarized
+
+" Setup the proper shell - we prefer rvm-shell, then zsh
+if executable('rvm-shell')
+  set shell=rvm-shell
+elseif executable('zsh')
+  set shell=zsh
+end
+
