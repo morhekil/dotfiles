@@ -23,6 +23,9 @@ set hlsearch
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <Esc>
 
+" Map quick shortcut to disable highlighting
+map <silent> <Leader>h :nohl<CR>
+
 " Ignoring case is a fun trick
 set ignorecase
 
