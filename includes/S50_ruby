@@ -1,0 +1,4 @@
+export GEM_PATH=/Users/saruman/.gem/ruby/1.8
+export GEM_HOME=/Users/saruman/.gem/ruby/1.8
+export GEM_EDITOR=mate
+export VISUAL=mate

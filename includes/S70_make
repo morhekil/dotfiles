@@ -1,0 +1,3 @@
+export LIBRARY_PATH="/opt/local/lib/mysql5/mysql"
+export C_INCLUDE_PATH="/opt/local/include/mysql5/mysql"
+export CPLUS_INCLUDE_PATH=$C_INCLUDE_PATH

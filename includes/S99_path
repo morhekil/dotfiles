@@ -1,0 +1,1 @@
+export PATH="bin:/Users/saruman/bin:${PATH}:/Users/saruman/.gem/ruby/1.8/bin:/Users/saruman/.python/bin"
