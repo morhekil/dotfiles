@@ -3,6 +3,7 @@ set shiftwidth=2
 set tabstop=2
 set expandtab
 set number
+let mapleader="\\"
 
 " set auto-indenting
 filetype plugin indent on
