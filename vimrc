@@ -56,6 +56,8 @@ autocmd BufWritePre *.erb :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.haml :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.sass :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.textile :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.js :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.html :call <SID>StripTrailingWhitespaces()
 
 " Enabling Pathogen.vim for bundles management
 call pathogen#runtime_append_all_bundles()
@@ -76,3 +78,15 @@ elseif executable('zsh')
   set shell=zsh
 end
 
+" Folding settings
+set foldmethod=syntax
+autocmd Syntax c,cpp,vim,xml,html,xhtml,perl,javaScript,ruby,sh,vimsyn normal zR
+
+let javaScript_fold=1         " JavaScript
+let perl_fold=1               " Perl
+let php_folding=1             " PHP
+let r_syntax_folding=1        " R
+let ruby_fold=1               " Ruby
+let sh_fold_enabled=1         " sh
+let vimsyn_folding='af'       " Vim script
+let xml_syntax_folding=1      " XML
