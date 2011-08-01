@@ -31,6 +31,9 @@ inoremap jj <Esc>
 
 " Map quick shortcut to disable highlighting
 map <silent> <Leader>h :nohl<CR>
+" Shortcut to quickly map a shortcut to run RSpec on the current file, fixing
+" file's name
+map <Leader>mr :map <Leader>r :w\\|!rspec <C-R>%<lt>CR><CR>
 
 " Ignoring case is a fun trick
 set ignorecase
