@@ -51,6 +51,9 @@ set cursorline
 " Hiding Fugitive's buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
+" Mapping <C-W>d to deleting the buffer, but keeping current layout
+map <silent> <C-W>d :BD<CR>
+
 syntax on
 
 " Automatically clean up trailing whitespaces for certain filetypes
