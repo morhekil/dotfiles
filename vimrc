@@ -5,6 +5,11 @@ set expandtab
 set number
 let mapleader="\\"
 
+" storing session data in viminfo
+set viminfo='10,\"100,:20,%,n~/.viminfo
+" and jump to the previous position in the file when it's open
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
+
 " set auto-indenting
 filetype plugin indent on
 set autoindent
