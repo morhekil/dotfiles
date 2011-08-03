@@ -1,4 +1,9 @@
-export GEM_PATH=/Users/saruman/.gem/ruby/1.8
-export GEM_HOME=/Users/saruman/.gem/ruby/1.8
-export GEM_EDITOR=mate
-export VISUAL=mate
+if [[ -d "${HOME}/.gem/ruby/1.8" ]]; then
+  export GEM_PATH=/Users/saruman/.gem/ruby/1.8
+  export GEM_HOME=/Users/saruman/.gem/ruby/1.8
+fi
+
+if [[ -f "/usr/local/bin/mate" ]]; then
+  export GEM_EDITOR=mate
+  export VISUAL=mate
+fi
