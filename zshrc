@@ -59,6 +59,8 @@ fi
 alias apgmy='apg -a 1 -m 10 -M NCL -E O0I1l'
 alias apgmys='apg -a 0 -M NCL -E O0I1l'
 alias vim='/usr/local/Cellar/macvim/*/MacVim.app/Contents/MacOS/Vim'
+# colored ls
+alias ls='ls --color=auto'
 export SYMFONY_ENV="dev"
 export POKERRU_ENV="dev"
 export SCUMMVM_PORT="128:0"
