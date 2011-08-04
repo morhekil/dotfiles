@@ -39,11 +39,12 @@ inoremap jj <Esc>
 map <silent> <Leader>h :nohl<CR>
 " Shortcut to quickly map a shortcut to run RSpec on the current file, fixing
 " file's name
-map <Leader>mr :map <Leader>r :w\\|!rspec <C-R>%<lt>CR><CR>
+let g:rspec_bin = "rspec"
+map <Leader>mr :map <Leader>r :w\\|!<C-R>=g:rspec_bin<CR> <C-R>%<lt>CR><CR>
 " Run RSpec on the current file
-map <Leader>rr :w\|!rspec <C-R>%<CR>
+map <Leader>rr :w\|!<C-R>=g:rspec_bin<CR> <C-R>%<CR>
 " Run RSpec on the whole suite
-map <Leader>R :w\|!rspec spec<CR>
+map <Leader>R :w\|!<C-R>=g:rspec_bin<CR> spec<CR>
 
 " Ignoring case is a fun trick
 set ignorecase
