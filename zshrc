@@ -77,3 +77,6 @@ for zshrc_include in ${HOME}/.zsh/includes/S[0-9][0-9]*[^~] ; do
         source $zshrc_include
 done
 
+if [[ -f ${HOME}/.zshrc.local ]]; then
+  source "${HOME}/.zshrc.local"
+fi
