@@ -26,6 +26,12 @@ set incsearch
 " Highlight things that we find with the search
 set hlsearch
 
+" ri_vim tool
+let g:ri_vim_tool = 'ri_vim '
+nnoremap <Leader>di :call ri#OpenSearchPrompt(0)<CR> " horizontal split
+nnoremap <Leader>dI :call ri#OpenSearchPrompt(1)<CR> " vertical split
+nnoremap <Leader>dK :call ri#LookupNameUnderCursor()<CR> " keyword lookup 
+
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <Esc>
 
@@ -34,6 +40,10 @@ map <silent> <Leader>h :nohl<CR>
 " Shortcut to quickly map a shortcut to run RSpec on the current file, fixing
 " file's name
 map <Leader>mr :map <Leader>r :w\\|!rspec <C-R>%<lt>CR><CR>
+" Run RSpec on the current file
+map <Leader>rr :w\|!rspec <C-R>%<CR>
+" Run RSpec on the whole suite
+map <Leader>R :w\|!rspec spec<CR>
 
 " Ignoring case is a fun trick
 set ignorecase
