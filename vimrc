@@ -42,9 +42,9 @@ map <silent> <Leader>h :nohl<CR>
 let g:rspec_bin = "rspec"
 map <Leader>mr :map <Leader>r :w\\|!<C-R>=g:rspec_bin<CR> <C-R>%<lt>CR><CR>
 " Run RSpec on the current file
-map <Leader>rr :w\|!<C-R>=g:rspec_bin<CR> <C-R>%<CR>
+map <Leader>RR :w\|!<C-R>=g:rspec_bin<CR> <C-R>%<CR>
 " Run RSpec on the whole suite
-map <Leader>R :w\|!<C-R>=g:rspec_bin<CR> spec<CR>
+map <Leader>RA :w\|!<C-R>=g:rspec_bin<CR> spec<CR>
 
 " Ignoring case is a fun trick
 set ignorecase
@@ -58,6 +58,8 @@ set statusline=%f\ %m%r%h%w\ (%{&ff}){%Y}\ [%l,%v]\ %{fugitive#statusline()}
 
 " Highlighting the current line
 set cursorline
+" And keeping the cursor in the middle of the screen
+set scrolloff=7
 
 " Hiding Fugitive's buffers
 autocmd BufReadPost fugitive://* set bufhidden=delete
