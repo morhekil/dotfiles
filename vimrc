@@ -89,7 +89,10 @@ call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
 " Textile support doesn't get auto-loaded for some reason
-au BufRead,BufNewFile *.textile set filetype=textile
+autocmd BufRead,BufNewFile *.textile set filetype=textile
+" And Coffee. Seems like ftdetect is fucked up
+autocmd BufRead,BufNewFile *.coffee set filetype=coffee
+autocmd BufNewFile,BufRead *Cakefile set filetype=coffee
 
 " Solarized color theme
 let g:solarized_termtrans=1
