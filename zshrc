@@ -18,7 +18,13 @@ setopt extendedglob
 # setopt correctall # commands correction
  
 unsetopt beep
+
+# VIM key bindings
 bindkey -v
+# with some overrides
+bindkey "^[[A" up-line-or-history
+bindkey "^[[B" down-line-or-history
+
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename "$HOME/.zshrc"
