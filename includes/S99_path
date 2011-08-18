@@ -1,1 +1,1 @@
-export PATH="bin:/Users/saruman/bin:${PATH}:/Users/saruman/.gem/ruby/1.8/bin:/Users/saruman/.python/bin"
+export PATH="bin:${HOME}/bin:${HOME}/node_modules/.bin:${PATH}:${HOME}/.gem/ruby/1.8/bin:${HOME}/.python/bin"
