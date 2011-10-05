@@ -5,6 +5,9 @@ set expandtab
 set number
 let mapleader="\\"
 
+" commands recognition in RU keyboard layout
+set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
+
 " storing session data in viminfo
 set viminfo='10,\"100,:20,%,n~/.viminfo
 " and jump to the previous position in the file when it's open
