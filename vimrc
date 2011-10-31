@@ -3,6 +3,7 @@ set shiftwidth=2
 set tabstop=2
 set expandtab
 set number
+set colorcolumn=80
 let mapleader="\\"
 
 " commands recognition in RU keyboard layout
