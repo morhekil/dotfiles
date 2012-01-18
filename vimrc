@@ -92,6 +92,7 @@ autocmd BufWritePre *.js :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.html :call <SID>StripTrailingWhitespaces()
 
 " Enabling Pathogen.vim for bundles management
+runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#runtime_append_all_bundles()
 call pathogen#helptags()
 
