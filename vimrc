@@ -47,6 +47,7 @@ map <silent> <Leader>h :nohl<CR>
 " file's name
 let g:rspec_bin = "rspec"
 map <Leader>mr :map <Leader>r :w\\|!<C-R>=g:rspec_bin<CR> <C-R>%<lt>CR><CR>
+map <Leader>mf :map <Leader>r :w\\|!<C-R>=g:rspec_bin<CR> -l <C-R>=line(".")<CR> <C-R>%<lt>CR><CR>
 " Run RSpec on the current file
 map <Leader>RR :w\|!<C-R>=g:rspec_bin<CR> <C-R>%<CR>
 " Run RSpec on the whole suite
