@@ -5,6 +5,8 @@ set expandtab
 set number
 set colorcolumn=80
 let mapleader="\\"
+" fix backspace to delete everything properly on all systems
+set backspace=indent,eol,start
 
 " commands recognition in RU keyboard layout
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
