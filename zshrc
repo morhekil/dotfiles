@@ -55,8 +55,6 @@ BLACK="%{"$'\033[01;30m'"%}"
 NORM="%{"$'\033[00m'"%}"
 export PS1="${MAGENTA}%n@%m ${BLUE}%~ %#${NORM} "
 
-export EDITOR=/usr/bin/vim
-
 if [[ -f "$HOME/.amazon-keys" ]]; then
   source "$HOME/.amazon-keys";
 fi
@@ -71,18 +69,20 @@ fi
 # colored ls
 alias ls='ls --color=auto'
 
-export SYMFONY_ENV="dev"
-export POKERRU_ENV="dev"
-export SCUMMVM_PORT="128:0"
-export RAILS_ENV="development"
-
-export PKG_CONFIG_PATH=/opt/local/lib/pkgconfig
-
 setopt extended_glob
 for zshrc_include in ${HOME}/.zsh/includes/S[0-9][0-9]*[^~] ; do
         source $zshrc_include
 done
 
+export SYMFONY_ENV="dev"
+export POKERRU_ENV="dev"
+export SCUMMVM_PORT="128:0"
+export RAILS_ENV="development"
+export EDITOR=`which vim`
+
+export PKG_CONFIG_PATH=/opt/local/lib/pkgconfig
+
 if [[ -f ${HOME}/.zshrc.local ]]; then
   source "${HOME}/.zshrc.local"
 fi
+

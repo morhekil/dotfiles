@@ -1,1 +1,1 @@
-export PATH="bin:${HOME}/bin:${HOME}/node_modules/.bin:${PATH}:${HOME}/.gem/ruby/1.8/bin:${HOME}/.python/bin"
+export PATH="bin:${HOME}/bin:${HOME}/opt/bin:${HOME}/node_modules/.bin:${PATH}:${HOME}/.gem/ruby/1.8/bin:${HOME}/.python/bin"
