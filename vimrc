@@ -101,6 +101,8 @@ autocmd BufRead,BufNewFile *.textile set filetype=textile
 " And Coffee. Seems like ftdetect is fucked up
 autocmd BufRead,BufNewFile *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *Cakefile set filetype=coffee
+" And Puppet
+autocmd BufRead,BufNewFile *.pp set filetype=puppet
 
 " Solarized color theme
 let g:solarized_termtrans=1

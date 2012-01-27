@@ -52,3 +52,6 @@
 [submodule "bundle/ack"]
 	path = bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
+[submodule "bundle/puppet"]
+	path = bundle/puppet
+	url = https://github.com/puppetlabs/puppet-syntax-vim.git
