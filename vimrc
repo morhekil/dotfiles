@@ -78,10 +78,10 @@ syntax on
 
 " Automatically clean up trailing whitespaces for certain filetypes
 fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
+    " let l = line(".")
+    " let c = col(".")
+    " %s/\s\+$//e
+    " call cursor(l, c)
 endfun
 autocmd BufWritePre *.rb :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.erb :call <SID>StripTrailingWhitespaces()
@@ -117,17 +117,17 @@ elseif executable('zsh')
 end
 
 " Folding settings
-set foldmethod=syntax
-autocmd Syntax c,cpp,vim,xml,html,xhtml,perl,javaScript,ruby,sh,vimsyn normal zR
+set foldmethod=manual
+" autocmd Syntax c,cpp,vim,xml,html,xhtml,perl,javaScript,ruby,sh,vimsyn normal zR
 
-let javaScript_fold=1         " JavaScript
-let perl_fold=1               " Perl
-let php_folding=1             " PHP
-let r_syntax_folding=1        " R
-let ruby_fold=1               " Ruby
-let sh_fold_enabled=1         " sh
-let vimsyn_folding='af'       " Vim script
-let xml_syntax_folding=1      " XML
+" let javaScript_fold=1         " JavaScript
+" let perl_fold=1               " Perl
+" let php_folding=1             " PHP
+" let r_syntax_folding=1        " R
+" let ruby_fold=1               " Ruby
+" let sh_fold_enabled=1         " sh
+" let vimsyn_folding='af'       " Vim script
+" let xml_syntax_folding=1      " XML
 
 " Enable matchit
 runtime macros/matchit.vim    
