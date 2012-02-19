@@ -99,6 +99,7 @@ call pathogen#helptags()
 " Textile support doesn't get auto-loaded for some reason
 autocmd BufRead,BufNewFile *.textile set filetype=textile
 " And Coffee. Seems like ftdetect is fucked up
+autocmd BufRead,BufNewFile *.coffee.erb set filetype=coffee
 autocmd BufRead,BufNewFile *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *Cakefile set filetype=coffee
 " And Puppet
@@ -131,6 +132,19 @@ let xml_syntax_folding=1      " XML
 
 " Enable matchit
 runtime macros/matchit.vim    
+
+" EasyMotion's colors Solarized-friendly
+hi link EasyMotionTarget ErrorMsg
+hi link EasyMotionShade  Comment
+
+" Syntastic setup
+let g:syntastic_echo_current_error=1
+let g:syntastic_enable_signs=1
+let g:syntastic_enable_highlighting=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_mode_map = { 'mode': 'active',
+                           \ 'passive_filetypes': ['sass']
+                           \ }
 
 " Load local overrides file if exists
 if filereadable(expand('~')."/.vimrc.local")
