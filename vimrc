@@ -118,7 +118,7 @@ elseif executable('zsh')
 end
 
 " Folding settings
-set foldmethod=syntax
+set foldmethod=manual "syntax
 autocmd Syntax c,cpp,vim,xml,html,xhtml,perl,javaScript,ruby,sh,vimsyn normal zR
 
 let javaScript_fold=1         " JavaScript
