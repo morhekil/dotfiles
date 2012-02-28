@@ -38,6 +38,9 @@ zsh_cache=${HOME}/.zsh/cache
 mkdir -p $zsh_cache
 compinit
 promptinit #; prompt gentoo
+zstyle ':completion:*' completer _complete _match _approximate
+zstyle ':completion:*:match:*' original only
+zstyle ':completion:*:approximate:*' max-errors 1 numeric
 zstyle ':completion::complete:*' use-cache 1
 zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
 zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
