@@ -55,3 +55,6 @@
 [submodule "bundle/puppet"]
 	path = bundle/puppet
 	url = https://github.com/puppetlabs/puppet-syntax-vim.git
+[submodule "bundle/keepcase"]
+	path = bundle/keepcase
+	url = https://github.com/vim-scripts/keepcase.vim
