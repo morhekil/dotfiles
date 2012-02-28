@@ -25,6 +25,9 @@ bindkey -v
 bindkey "^[[A" up-line-or-history
 bindkey "^[[B" down-line-or-history
 
+# Ctrl-R reverse search
+bindkey '^R' history-incremental-search-backward
+
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename "$HOME/.zshrc"
