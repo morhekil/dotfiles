@@ -58,3 +58,9 @@
 [submodule "bundle/keepcase"]
 	path = bundle/keepcase
 	url = https://github.com/vim-scripts/keepcase.vim
+[submodule "bundle/syntastic"]
+	path = bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule "bundle/vim-easymotion"]
+	path = bundle/vim-easymotion
+	url = https://github.com/Lokaltog/vim-easymotion.git
