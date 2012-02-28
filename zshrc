@@ -69,9 +69,15 @@ fi
 alias apgmy='apg -a 1 -m 10 -M NCL -E O0I1l'
 alias apgmys='apg -a 0 -M NCL -E O0I1l'
 
+# Set up vim path and EDITOR
 if [[ -d '/usr/local/Cellar/macvim' ]]; then
-  alias vim='/usr/local/Cellar/macvim/*/MacVim.app/Contents/MacOS/Vim'
+  vimpath=`ls /usr/local/Cellar/macvim/*/MacVim.app/Contents/MacOS/Vim | head -n1`
+  alias vim=$vimpath
+  export EDITOR=$vimpath
+else
+  export EDITOR=`which vim`
 fi
+
 # colored ls
 alias ls='ls --color=auto'
 
@@ -84,7 +90,6 @@ export SYMFONY_ENV="dev"
 export POKERRU_ENV="dev"
 export SCUMMVM_PORT="128:0"
 export RAILS_ENV="development"
-export EDITOR=`which vim`
 
 export PKG_CONFIG_PATH=/opt/local/lib/pkgconfig
 
