@@ -156,6 +156,10 @@ let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'passive_filetypes': ['sass']
                            \ }
 
+" FuzzyFinder's mappings
+map <Leader>ff :FufCoverageFile<CR>
+map <Leader>fr :FufMruFile<CR>
+
 " Load local overrides file if exists
 if filereadable(expand('~')."/.vimrc.local")
   source ~/.vimrc.local
