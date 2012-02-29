@@ -137,7 +137,8 @@ function current_branch() {
 }
 
 # these aliases take advantage of the previous function
-alias ggpull='git pull origin $(current_branch)'
-compdef ggpull=git
-alias ggpush='git push origin $(current_branch)'
-compdef ggpush=git
+alias gpl='git pull origin $(current_branch)'
+compdef gpl=git
+alias gps='git push origin $(current_branch)'
+compdef gps=git
+alias gundo="git reset 'HEAD^1'"
