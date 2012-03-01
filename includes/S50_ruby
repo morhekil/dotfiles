@@ -14,4 +14,4 @@ if [[ -f "/usr/local/bin/subl" ]]; then
 fi
 
 # alias to launch Rails console with pry instead of irb
-alias rcon="pry -r ./config/environment"
+alias pryr="pry -r ./config/environment"
