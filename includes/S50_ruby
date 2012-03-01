@@ -13,3 +13,5 @@ if [[ -f "/usr/local/bin/subl" ]]; then
   export VISUAL=subl
 fi
 
+# alias to launch Rails console with pry instead of irb
+alias rcon="pry -r ./config/environment"

@@ -142,3 +142,5 @@ compdef gpl=git
 alias gps='git push origin $(current_branch)'
 compdef gps=git
 alias gundo="git reset 'HEAD^1'"
+alias gl="git log | less"
+alias gst="git status"
