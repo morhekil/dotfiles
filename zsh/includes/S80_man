@@ -1,0 +1,1 @@
+export MANPATH="/usr/share/man:/usr/local/share/man:/usr/X11/man:/opt/local/man"
