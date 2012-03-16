@@ -53,6 +53,9 @@ map <Leader>RR :w\|!<C-R>=g:rspec_bin<CR> <C-R>%<CR>
 " Run RSpec on the whole suite
 map <Leader>RA :w\|!<C-R>=g:rspec_bin<CR> spec<CR>
 
+" Quick delete for all buffers
+map <Leader>bd :1,9999bd<CR>
+
 " Ignoring case is a fun trick
 set ignorecase
 
