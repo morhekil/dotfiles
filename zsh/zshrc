@@ -93,6 +93,9 @@ export RAILS_ENV="development"
 
 export PKG_CONFIG_PATH=/opt/local/lib/pkgconfig
 
+# disable auto-titles to stop zsh from messing up tmux's titles
+export DISABLE_AUTO_TITLE="true"
+
 if [[ -f ${HOME}/.zshrc.local ]]; then
   source "${HOME}/.zshrc.local"
 fi

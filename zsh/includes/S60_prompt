@@ -82,29 +82,31 @@ unset rst bgc
 # ------------------------------
 # http://dotfiles.org/~frogb/.zshrc
 
-case $TERM in
-    xterm* | rxvt* | urxvt*)
-        precmd() { 
-                print -Pn "\e]0;%n@%m: %~\a"
-        }
-        preexec() {
-                #print -Pn "\e]0;$1\a"
-                print -Pn "\e]0;%n@%m: %~  $1\a"
-        }
-        ;;
-    screen*)
-        precmd() { 
-                print -nR $'\033k'"zsh"$'\033'\\\
+if [[ "$DISABLE_AUTO_TITLE" != "true" ]]; then
+  case $TERM in
+      xterm* | rxvt* | urxvt*)
+          precmd() { 
+                  print -Pn "\e]0;%n@%m: %~\a"
+          }
+          preexec() {
+                  #print -Pn "\e]0;$1\a"
+                  print -Pn "\e]0;%n@%m: %~  $1\a"
+          }
+          ;;
+      screen*)
+          precmd() { 
+                  print -nR $'\033k'"zsh"$'\033'\\\
 
-                print -nR $'\033]0;'"zsh"$'\a'
-        }
-        preexec() {
-                print -nR $'\033k'"$1"$'\033'\\\
+                  print -nR $'\033]0;'"zsh"$'\a'
+          }
+          preexec() {
+                  print -nR $'\033k'"$1"$'\033'\\\
 
-                print -nR $'\033]0;'"$1"$'\a'
-        }
-        ;;
-esac
+                  print -nR $'\033]0;'"$1"$'\a'
+          }
+          ;;
+  esac
+fi
 
 
 
