@@ -1,0 +1,5 @@
+--follow
+--type-add=ruby=.haml,.rake,.rsel,.sass
+--type-add=php=.tpl
+--type-add=css=.scss
+--type-set=DUMB=.log
