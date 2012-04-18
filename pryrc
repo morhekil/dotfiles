@@ -189,6 +189,10 @@ if File.exist?(rails) && ENV['SKIP_RAILS'].nil?
   if Rails.version[0..0] == "2"
     require 'console_app'
     require 'console_with_helpers'
+  elsif Rails.version[0..2] == "3.2"
+    require 'rails/console/app'
+    require 'rails/console/helpers'
+    extend Rails::ConsoleMethods
   elsif Rails.version[0..0] == "3"
     require 'rails/console/app'
     require 'rails/console/helpers'
