@@ -3,3 +3,4 @@
 --type-add=php=.tpl
 --type-add=css=.scss
 --type-set=DUMB=.log
+--noDUMB
