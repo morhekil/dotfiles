@@ -67,12 +67,12 @@
 [submodule "vim/bundle/vim-repeat"]
 	path = vim/bundle/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/bundle/fuzzy_finder"]
-	path = vim/bundle/fuzzy_finder
-	url = https://github.com/vim-scripts/FuzzyFinder.git
 [submodule "vim/bundle/L9"]
   path = vim/bundle/L9
   url = https://github.com/vim-scripts/L9.git
 [submodule "vim/bundle/vim-rails"]
 	path = vim/bundle/vim-rails
 	url = https://github.com/tpope/vim-rails.git
+[submodule "vim/bundle/ctrlp"]
+	path = vim/bundle/ctrlp
+	url = https://github.com/kien/ctrlp.vim.git
