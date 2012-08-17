@@ -170,3 +170,7 @@ map <Leader>fr :FufMruFile<CR>
 if filereadable(expand('~')."/.vimrc.local")
   source ~/.vimrc.local
 endif
+" Load per-directory overrides file if exists
+if filereadable("./.vimrc.dir")
+  source ./.vimrc.dir
+endif
