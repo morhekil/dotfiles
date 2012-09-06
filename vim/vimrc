@@ -42,7 +42,7 @@ nnoremap <Leader>dK :call ri#LookupNameUnderCursor()<CR> " keyword lookup
 inoremap jj <Esc>
 
 " Ack word under cursor
-noremap <Leader>aa :Ack <cword><CR>
+noremap <Leader>aa :Ack! <cword><CR>
 
 " Map quick shortcut to disable highlighting
 map <silent> <Leader>h :nohl<CR>
