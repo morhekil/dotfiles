@@ -174,8 +174,7 @@ map <c-p><c-x> :CtrlPMixed<CR>
 " and some settings for listing files
 set wildignore+=*/tmp/*,*.so,*.swp,*.zip  " MacOSX/Linux
 let g:ctrlp_working_path_mode = 'rc' " p_r_oject root, or _c_urrent file's dir
-let g:ctrlp_custom_ignore = '\.git$\|\.svn$'
-let g:ctrlp_user_command = 'find %s -type f'
+let g:ctrlp_custom_ignore = '\.git\|vendor'
 
 " %% to quickly access current file's directory
 cnoremap %% <C-R>=expand('%:h').'/'<cr>
