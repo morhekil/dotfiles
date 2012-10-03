@@ -117,6 +117,7 @@ autocmd BufRead,BufNewFile *.pp set filetype=puppet
 
 " Solarized color theme
 let g:solarized_termtrans=1
+let g:solarized_bold=0
 set background=light
 colorscheme solarized
 
