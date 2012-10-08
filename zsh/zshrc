@@ -25,9 +25,6 @@ bindkey -v
 bindkey "^[[A" up-line-or-history
 bindkey "^[[B" down-line-or-history
 
-# Ctrl-R reverse search
-bindkey '^R' history-incremental-search-backward
-
 # End of lines configured by zsh-newuser-install
 # The following lines were added by compinstall
 zstyle :compinstall filename "$HOME/.zshrc"
@@ -49,10 +46,6 @@ zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 local _myhosts
 _myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
 zstyle ':completion:*' hosts $_myhosts
-
-# key bindings
-bindkey "\e[3~"     delete-char         # [Del] deletes char under the cursor
-bindkey "^H"    history-beginning-search-backward
 
 # Colorized prompt
 MAGENTA="%{"$'\033[01;35m'"%}"
@@ -78,13 +71,22 @@ else
   export EDITOR=`which vim`
 fi
 
-# colored ls
-alias ls='ls --color=auto'
-
 setopt extended_glob
-for zshrc_include in ${HOME}/.zsh/includes/S[0-9][0-9]*[^~] ; do
-        source $zshrc_include
-done
+
+if [ -z "$MC_TMPDIR" ] ; then # check for mc
+  # key bindings
+  bindkey "\e[3~"     delete-char         # [Del] deletes char under the cursor
+  bindkey "^H"    history-beginning-search-backward
+  # Ctrl-R reverse search
+  bindkey '^R' history-incremental-search-backward
+
+  # colored ls
+  alias ls='ls --color=auto'
+
+  for zshrc_include in ${HOME}/.zsh/includes/S[0-9][0-9]*[^~] ; do
+          source $zshrc_include
+  done
+fi
 
 export SYMFONY_ENV="dev"
 export POKERRU_ENV="dev"
