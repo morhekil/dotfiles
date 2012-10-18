@@ -1,5 +1,9 @@
 # export TERM=xterm-color
-export TERM=xterm-256color
+if [[ "$TERM" != *256color ]]
+then
+  export TERM=$TERM-256color
+fi
+
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export CLICOLOR=1
 alias ls='ls -G'
