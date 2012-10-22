@@ -142,5 +142,11 @@ compdef gpl=git
 alias gps='git push origin $(current_branch)'
 compdef gps=git
 alias gundo="git reset 'HEAD^1'"
-alias gl="git log | less"
 alias gst="git status"
+source ~/.dotfiles/git/githelpers
+alias gl="pretty_git_log" # git log | less"
+alias gla="pretty_git_log --all" # git log | less"
+alias gr="pretty_git_log -30" # git log | less"
+alias gra="pretty_git_log --all -30" # git log | less"
+alias gh="pretty_git_log -1"
+alias ghp="show_git_head"
