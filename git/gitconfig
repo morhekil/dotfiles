@@ -1,0 +1,20 @@
+[core]
+  pager =
+  excludesfile = ~/.gitignore
+[user]
+	name = Oleg Ivanov
+	email = morhekil@morhekil.net
+[color]
+  ui = true
+[alias]
+  sh = stash
+  st = status
+  ci = commit
+  co = checkout
+  b = branch
+[push]
+	default = "matching"
+
+[mergetool]
+	keepBackup = true
+  tool = vimdiff
