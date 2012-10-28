@@ -144,6 +144,7 @@ alias gps='git push origin $(current_branch)'
 compdef gps=git
 alias gundo="git reset 'HEAD^1'"
 alias gst="git status"
+alias gdi="git diff"
 source ~/.dotfiles/git/githelpers
 alias gl="pretty_git_log" # git log | less"
 alias gla="pretty_git_log --all" # git log | less"
