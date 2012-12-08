@@ -10,7 +10,7 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 " and custom ones per file type
-autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
+autocmd FileType python setlocal shiftwidth=2 tabstop=2 softtabstop=2
 
 " commands recognition in RU keyboard layout
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
@@ -117,7 +117,7 @@ autocmd BufRead,BufNewFile *.pp set filetype=puppet
 
 " Solarized color theme
 let g:solarized_termtrans=1
-let g:solarized_bold=0
+let g:solarized_bold=1
 set background=light
 colorscheme solarized
 
