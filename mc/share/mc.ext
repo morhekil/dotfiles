@@ -545,7 +545,7 @@ type/^Microsoft\ Word
 
 # RTF document
 regex/\.([rR][tT][fF])$
-	Open=(abiword %f >/dev/null 2>&1 &)
+	Open=(open %f &)
 
 # Microsoft Excel Worksheet
 regex/\.([xX][lL][sSwW])$
