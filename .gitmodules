@@ -28,9 +28,6 @@
 [submodule "vim/bundle/bufkill.vim"]
 	path = vim/bundle/bufkill.vim
 	url = https://github.com/vim-scripts/bufkill.vim.git
-[submodule "vim/bundle/vim-rooter"]
-	path = vim/bundle/vim-rooter
-	url = https://github.com/airblade/vim-rooter.git
 [submodule "vim/bundle/vim-coffee-script"]
 	path = vim/bundle/vim-coffee-script
 	url = https://github.com/kchmck/vim-coffee-script.git
