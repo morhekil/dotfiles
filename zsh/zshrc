@@ -61,6 +61,7 @@ fi
 # local vars and alises
 alias apgmy='apg -a 1 -m 10 -M NCL -E O0I1l'
 alias apgmys='apg -a 0 -M NCL -E O0I1l'
+alias cdb='cd $OLDPWD'
 
 # Set up vim path and EDITOR
 if [[ -d '/usr/local/Cellar/macvim' ]]; then

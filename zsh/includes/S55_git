@@ -152,3 +152,4 @@ alias gr="pretty_git_log -20" # git log | less"
 alias gra="pretty_git_log --all -20" # git log | less"
 alias gh="pretty_git_log -1"
 alias ghp="show_git_head"
+alias grt='cd $(git rev-parse --show-toplevel || echo ".")'
