@@ -5,12 +5,10 @@ fi
 
 if [[ -f "/usr/local/bin/mate" ]]; then
   export GEM_EDITOR=mate
-  export VISUAL=mate
 fi
 
 if [[ -f "/usr/local/bin/subl" ]]; then
   export GEM_EDITOR=subl
-  export VISUAL=subl
 fi
 
 # alias to launch Rails console with pry instead of irb
