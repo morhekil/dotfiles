@@ -52,13 +52,13 @@ noremap <Leader>aa :Ack! <cword><CR>
 map <silent> <Leader>h :nohl<CR>
 " Shortcut to quickly map a shortcut to run RSpec on the current file, fixing
 " file's name
-let g:rspec_bin = "rspec"
-map <Leader>mr :map <Leader>r :w\\|!<C-R>=g:rspec_bin<CR> <C-R>%<lt>CR><CR>
-map <Leader>mf :map <Leader>r :w\\|!<C-R>=g:rspec_bin<CR> -l <C-R>=line(".")<CR> <C-R>%<lt>CR><CR>
-" Run RSpec on the current file
-map <Leader>RR :w\|!<C-R>=g:rspec_bin<CR> <C-R>%<CR>
-" Run RSpec on the whole suite
-map <Leader>RA :w\|!<C-R>=g:rspec_bin<CR> spec<CR>
+" let g:rspec_bin = "rspec"
+" map <Leader>mr :map <Leader>r :w\\|!<C-R>=g:rspec_bin<CR> <C-R>%<lt>CR><CR>
+" map <Leader>mf :map <Leader>r :w\\|!<C-R>=g:rspec_bin<CR> -l <C-R>=line(".")<CR> <C-R>%<lt>CR><CR>
+" " Run RSpec on the current file
+" map <Leader>RR :w\|!<C-R>=g:rspec_bin<CR> <C-R>%<CR>
+" " Run RSpec on the whole suite
+" map <Leader>RA :w\|!<C-R>=g:rspec_bin<CR> spec<CR>
 
 " Quick delete for all buffers
 map <Leader>bd :1,9999bd<CR>
@@ -120,6 +120,14 @@ let g:solarized_termtrans=1
 let g:solarized_bold=1
 set background=light
 colorscheme solarized
+
+" Vroom setup
+let g:vroom_use_colors=1
+let g:vroom_clear_screen=0
+let g:vroom_use_vimux=1
+let g:vroom_use_binstubs=1
+let g:vroom_use_bundle_exec=0
+
 
 " Setup the proper shell - we prefer rvm-shell, then zsh
 if executable('rvm-shell')
