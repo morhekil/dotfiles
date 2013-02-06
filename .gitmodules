@@ -85,3 +85,6 @@
 [submodule "vim/bundle/vim-vroom"]
 	path = vim/bundle/vim-vroom
 	url = git://github.com/skalnik/vim-vroom.git
+[submodule "vim/bundle/YouCompleteMe.git"]
+	path = vim/bundle/YouCompleteMe.git
+	url = git://github.com/Valloric/YouCompleteMe.git
