@@ -1,0 +1,16 @@
+config defaultToCurrentScreen true
+# Shows app icons and background apps, spreads icons in the same place.
+config windowHintsShowIcons true
+config windowHintsIgnoreHiddenWindows false
+config windowHintsSpread true
+
+alias hyper ctrl;shift;alt;cmd
+
+alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
+
+bind k:${hyper} hint adsfzxcvqwer
+bind x:cmd;alt;ctrl ${full}
+
+bind f:${hyper} focus "iTerm"
+bind c:${hyper} focus "Google Chrome"
+bind e:${hyper} focus "Postbox"
