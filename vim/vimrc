@@ -176,6 +176,9 @@ let g:syntastic_mode_map = { 'mode': 'active',
                            \ }
 let g:syntastic_ruby_exec = "ruby"
 
+" \a to switch to a previous buffer
+nmap \x :e#<CR>
+
 " FuzzyFinder's mappings
 map <Leader>ff :FufCoverageFile<CR>
 map <Leader>fr :FufMruFile<CR>
