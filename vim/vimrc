@@ -88,10 +88,10 @@ syntax on
 
 " Automatically clean up trailing whitespaces for certain filetypes
 fun! <SID>StripTrailingWhitespaces()
-    " let l = line(".")
-    " let c = col(".")
-    " %s/\s\+$//e
-    " call cursor(l, c)
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
 endfun
 autocmd BufWritePre *.rb :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.erb :call <SID>StripTrailingWhitespaces()
