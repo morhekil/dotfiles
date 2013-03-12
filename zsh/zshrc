@@ -72,6 +72,9 @@ else
 fi
 
 setopt extended_glob
+setopt autopushd
+alias dv='dirs -v'
+setopt auto_cd
 
 if [ -z "$MC_TMPDIR" ] ; then # check for mc
   # key bindings
