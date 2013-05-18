@@ -59,7 +59,7 @@ if [[ -f "$HOME/.amazon-keys" ]]; then
 fi
 
 # local vars and alises
-alias apgmy='apg -a 1 -m 10 -M NCL -E O0I1l'
+alias apgmy='apg -a 1 -m 12 -M NCL -E O0I1l'
 alias apgmys='apg -a 0 -M NCL -E O0I1l'
 
 # Set up vim path and EDITOR
