@@ -102,6 +102,9 @@ autocmd BufWritePre *.textile :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.js :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.html :call <SID>StripTrailingWhitespaces()
 
+" set sh syntax highlighting for yrules files
+au BufRead,BufNewFile yrules set filetype=sh
+
 " Enabling Pathogen.vim for bundles management
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#runtime_append_all_bundles()

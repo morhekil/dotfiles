@@ -1,0 +1,39 @@
+defaultTarget="all"
+
+declare -A dotpaths
+
+dotfiles=("ackrc aprc aria2/aria2.conf gitconfig lftprc pryrc slate slate.js tmux.conf vim vimrc zsh zshrc")
+dotpaths[zshrc]="zsh/zshrc"
+dotpaths[vimrc]="vim/vimrc"
+dotpaths[gitconfig]="git/gitconfig"
+dotpaths["aria2/aria2.conf"]="aria2.conf"
+
+dep_all() {
+  local deps=""
+  for i in ${dotfiles}; do
+    deps=$(lappend "$deps" "symlink_dot_$i")
+  done
+  echo $deps
+}
+cmd_all() {
+  dlog "making all"
+}
+
+mapTarget 'symlink_dot_*' symlink_dot
+
+test_symlink_dot() {
+  eval target=${1/symlink_dot_/~\/.}
+  dlog "testing target $target"
+  ! test -e $target
+}
+cmd_symlink_dot() {
+  local dotfile=${1/symlink_dot_}
+  local target=${dotpaths[$dotfile]}
+  if [[ -z "$target" ]]; then local target="$dotfile"; fi
+  
+  dlog "symlinking dotfile $dotfile to target $target"
+
+  eval fullpath=`dirname "~/.$dotfile"`
+  mkdir -p "$fullpath"
+  ln -sf "~/.dotfiles/$target" "~/.$dotfile"
+}
