@@ -105,13 +105,13 @@ export PKG_CONFIG_PATH=/opt/local/lib/pkgconfig
 # disable auto-titles to stop zsh from messing up tmux's titles
 export DISABLE_AUTO_TITLE="true"
 
-if [[ -f ${HOME}/.zshrc.local ]]; then
+if [ -f ${HOME}/.zshrc.local ]; then
   source "${HOME}/.zshrc.local"
 fi
 
 # if we're launching zsh in a dir with .rvmrc - then cd out of it, and then back
 # in, to reinitialize rvm
-if [[ -f .rvmrc ]]; then
+if [ -f .rvmrc ] || [ -f .ruby-version ] || [ -f .ruby-gemset ]; then
   old_dir=`pwd`
   cd .. && cd $old_dir
 fi
