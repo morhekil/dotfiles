@@ -63,6 +63,10 @@ map <silent> <Leader>h :nohl<CR>
 " Quick delete for all buffers
 map <Leader>bd :1,9999bd<CR>
 
+" cycle through the buffers
+map <C-h> :bprev<CR>
+map <C-l> :bnext<CR>
+
 " Ignoring case is a fun trick
 set ignorecase
 " And so is Artificial Intellegence!
