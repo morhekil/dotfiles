@@ -94,3 +94,6 @@
 [submodule "vim/bundle/nerdtree"]
 	path = vim/bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
+[submodule "sack"]
+	path = sack
+	url = git@github.com:morhekil/sack.git

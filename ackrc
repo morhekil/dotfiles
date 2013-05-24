@@ -1,5 +1,4 @@
 --follow
---group
 --sort-files
 --type-add=html=.html.erb,.html.slim,.html.haml,.mustache,.jst,.ejs,.radius
 --type-add=js=.js.erb,.coffee

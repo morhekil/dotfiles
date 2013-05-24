@@ -2,11 +2,14 @@ defaultTarget="all"
 
 declare -A dotpaths
 
-dotfiles=("ackrc aprc aria2/aria2.conf gitconfig lftprc pryrc slate slate.js tmux.conf vim vimrc zsh zshrc")
+dotfiles=("ackrc aprc aria2/aria2.conf gitconfig lftprc pryrc slate slate.js tmux.conf vim vimrc zsh zshrc /bin/sack /bin/sag /bin/sgrep sackrc")
 dotpaths[zshrc]="zsh/zshrc"
 dotpaths[vimrc]="vim/vimrc"
 dotpaths[gitconfig]="git/gitconfig"
 dotpaths["aria2/aria2.conf"]="aria2.conf"
+dotpaths["/bin/sack"]="sack/sack"
+dotpaths["/bin/sag"]="sack/sag"
+dotpaths["/bin/sgrep"]="sack/sgrep"
 
 dep_all() {
   local deps=""
@@ -35,5 +38,5 @@ cmd_symlink_dot() {
 
   eval fullpath=`dirname "~/.$dotfile"`
   mkdir -p "$fullpath"
-  ln -sf "~/.dotfiles/$target" "~/.$dotfile"
+  ln -sf ~/.dotfiles/$target ~/.$dotfile
 }

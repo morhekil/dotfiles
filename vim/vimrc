@@ -47,6 +47,8 @@ inoremap jj <Esc>
 
 " Ack word under cursor
 noremap <Leader>aa :Ack! <cword><CR>
+" and ack plugin switched to ag
+let g:ackprg = 'ag --nogroup --nocolor --column'
 
 " Map quick shortcut to disable highlighting
 map <silent> <Leader>h :nohl<CR>
@@ -101,6 +103,7 @@ endfun
 autocmd BufWritePre *.rb :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.erb :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.haml :call <SID>StripTrailingWhitespaces()
+autocmd BufWritePre *.hamlbars :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.sass :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.textile :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.js :call <SID>StripTrailingWhitespaces()
@@ -122,6 +125,8 @@ autocmd BufRead,BufNewFile *.coffee set filetype=coffee
 autocmd BufNewFile,BufRead *Cakefile set filetype=coffee
 " And Puppet
 autocmd BufRead,BufNewFile *.pp set filetype=puppet
+" Hamlbars
+autocmd BufRead,BufNewFile *.hamlbars set filetype=haml
 
 " Solarized color theme
 let g:solarized_termtrans=1
