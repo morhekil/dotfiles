@@ -114,7 +114,7 @@ au BufRead,BufNewFile yrules set filetype=sh
 
 " Enabling Pathogen.vim for bundles management
 runtime bundle/pathogen/autoload/pathogen.vim
-call pathogen#runtime_append_all_bundles()
+call pathogen#incubate()
 call pathogen#helptags()
 
 " Textile support doesn't get auto-loaded for some reason
