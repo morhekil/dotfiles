@@ -191,6 +191,7 @@ let g:syntastic_mode_map = { 'mode': 'active',
                            \ 'passive_filetypes': ['sass']
                            \ }
 let g:syntastic_ruby_exec = "ruby"
+let g:syntastic_ruby_checkers = ['mri', 'rubocop']
 
 " NERDTree on \t
 nmap \t :NERDTreeToggle<CR>
