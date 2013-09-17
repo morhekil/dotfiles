@@ -10,7 +10,7 @@ set shiftwidth=2
 set tabstop=2
 set softtabstop=2
 " and custom ones per file type
-autocmd FileType python setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
 " commands recognition in RU keyboard layout
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
@@ -100,6 +100,7 @@ fun! <SID>StripTrailingWhitespaces()
     %s/\s\+$//e
     call cursor(l, c)
 endfun
+autocmd BufWritePre *.py :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.rb :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.erb :call <SID>StripTrailingWhitespaces()
 autocmd BufWritePre *.haml :call <SID>StripTrailingWhitespaces()
