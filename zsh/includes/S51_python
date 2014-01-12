@@ -1,1 +1,2 @@
 export PYTHONPATH=/Users/kurumo/.python:/Users/saruman/.python/lib/python2.5/site-packages:$PYTHONPATH
+export PYTHONSTARTUP=~/.pythonstartup

@@ -20,10 +20,6 @@ set viminfo='10,\"100,:20,%,n~/.viminfo
 " and jump to the previous position in the file when it's open
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g`\"" | endif
 
-" set auto-indenting
-filetype plugin indent on
-set autoindent
-
 " turn off compatibility with the old vi
 set nocompatible
 
@@ -91,8 +87,6 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " Mapping <C-W>d to deleting the buffer, but keeping current layout
 map <silent> <C-W>d :BD<CR>
 
-syntax on
-
 " Automatically clean up trailing whitespaces for certain filetypes
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
@@ -117,6 +111,11 @@ au BufRead,BufNewFile yrules set filetype=sh
 runtime bundle/pathogen/autoload/pathogen.vim
 call pathogen#incubate()
 call pathogen#helptags()
+
+" this needs to be AFTER pathogen init, to let it see all pathogen's bundles
+syntax on
+filetype plugin indent on
+set autoindent
 
 " Textile support doesn't get auto-loaded for some reason
 autocmd BufRead,BufNewFile *.textile set filetype=textile
