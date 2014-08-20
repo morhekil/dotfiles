@@ -43,6 +43,7 @@ nnoremap <Leader>dK :call ri#LookupNameUnderCursor()<CR> " keyword lookup
 
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <Esc>
+inoremap kk <Esc>
 
 " Ack word under cursor
 noremap <Leader>aa :Ack! <cword><CR>
@@ -191,10 +192,13 @@ let g:syntastic_enable_signs=1
 let g:syntastic_enable_highlighting=1
 let g:syntastic_auto_loc_list=1
 let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'passive_filetypes': ['sass']
+                           \ 'passive_filetypes': ['sass', 'html', 'scss']
                            \ }
 let g:syntastic_ruby_exec = "ruby"
 let g:syntastic_ruby_checkers = ['mri', 'rubocop']
+
+" Emmet setup
+let g:user_emmet_leader_key='<C-a>'
 
 " NERDTree on \t
 nmap \t :NERDTreeToggle<CR>
