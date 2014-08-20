@@ -117,3 +117,10 @@ if [ -f .rvmrc ] || [ -f .ruby-version ] || [ -f .ruby-gemset ]; then
   old_dir=`pwd`
   cd .. && cd $old_dir
 fi
+
+
+# HOMEBREW
+export HOMEBREW_CASK_OPTS="--appdir=/Applications"
+
+# direnv hook
+eval "$(direnv hook $0)"

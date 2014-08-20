@@ -12,6 +12,9 @@ set softtabstop=2
 " and custom ones per file type
 autocmd FileType python setlocal shiftwidth=4 tabstop=4 softtabstop=4
 
+" Golang settings
+autocmd FileType go setlocal noexpandtab shiftwidth=4 tabstop=4 softtabstop=4
+
 " commands recognition in RU keyboard layout
 set langmap=ёйцукенгшщзхъфывапролджэячсмитьбюЁЙЦУКЕHГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ;`qwertyuiop[]asdfghjkl\\;'zxcvbnm\\,.~QWERTYUIOP{}ASDFGHJKL:\\"ZXCVBNM<>
 
