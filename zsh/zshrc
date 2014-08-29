@@ -86,7 +86,7 @@ if [ -z "$MC_TMPDIR" ] ; then # check for mc
   # colored ls
   alias ls='ls --color=auto'
 
-  for zshrc_include in ${HOME}/.zsh/includes/S[0-9][0-9]*[^~] ; do
+  for zshrc_include in ${HOME}/.zsh/includes/* ; do
           source $zshrc_include
   done
 fi
