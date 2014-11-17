@@ -118,6 +118,8 @@ if [ -f .rvmrc ] || [ -f .ruby-version ] || [ -f .ruby-gemset ]; then
   cd .. && cd $old_dir
 fi
 
+# Emacs
+alias emacs='TERM=xterm-16color emacs'
 
 # HOMEBREW
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
