@@ -1,8 +1,8 @@
 # export TERM=xterm-color
-if [[ "$TERM" != *256color ]]
-then
-  export TERM=$TERM-256color
-fi
+# if [[ "$TERM" != *256color ]]
+# then
+#   export TERM=$TERM-256color
+# fi
 
 export GREP_OPTIONS='--color=auto' GREP_COLOR='1;32'
 export CLICOLOR=1
