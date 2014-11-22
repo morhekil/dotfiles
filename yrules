@@ -2,7 +2,7 @@ defaultTarget="all"
 
 declare -A dotpaths
 
-dotfiles=("ackrc aprc aria2/aria2.conf gitconfig lftprc pryrc slate slate.js tmux.conf vim vimrc zsh zshrc /bin/sack /bin/sag /bin/sgrep sackrc percol.d")
+dotfiles=("ackrc aprc aria2/aria2.conf gitconfig lftprc pryrc slate slate.js tmux.conf vim vimrc zsh zshrc /bin/sack /bin/sag /bin/sgrep sackrc percol.d emacs emacs.d")
 dotpaths[zshrc]="zsh/zshrc"
 dotpaths[vimrc]="vim/vimrc"
 dotpaths[gitconfig]="git/gitconfig"
