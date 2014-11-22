@@ -62,3 +62,7 @@
  version-control t)       ; use versioned backups
 (setq backup-directory-alist `((".*" . ,temporary-file-directory)))    ; don't litter my fs tree
 (setq auto-save-file-name-transforms `((".*" ,temporary-file-directory t)))
+
+;; auto-complete
+(setq company-idle-delay 0)
+(add-hook 'after-init-hook 'global-company-mode)
