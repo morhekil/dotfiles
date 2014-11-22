@@ -9,6 +9,7 @@
 (require 'flymake)
 
 (setq evil-want-C-u-scroll t)
+(setq evil-toggle-key "C-c z")
 (evil-mode 1)
 ;; enable evil mode in all buffers
 (setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
@@ -66,3 +67,13 @@
 ;; auto-complete
 (setq company-idle-delay 0)
 (add-hook 'after-init-hook 'global-company-mode)
+
+;; kill all buffers
+(defun kill-all-buffers ()
+  "Kill all buffers."
+  (interactive)
+  (mapc 'kill-buffer (buffer-list)))
+(define-key global-map (kbd "C-c \\ b d") 'kill-all-buffers)
+
+;; give me back my shell!
+(define-key global-map (kbd "C-z") 'shell)
