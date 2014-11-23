@@ -77,3 +77,9 @@
 
 ;; give me back my shell!
 (define-key global-map (kbd "C-z") 'shell)
+
+;; smart parenthesis
+(require 'smartparens-config)
+(sp-pair "\"" nil :actions :rem)
+(setq sp-autoescape-string-quote nil)
+;; (smartparens-global-mode t)
