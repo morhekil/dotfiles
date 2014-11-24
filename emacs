@@ -83,3 +83,17 @@
 (sp-pair "\"" nil :actions :rem)
 (setq sp-autoescape-string-quote nil)
 ;; (smartparens-global-mode t)
+
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
+(setq web-mode-enable-css-colorization t)
+
+;; Ruby/Rails setup
+(defadvice rspec-compile (around rspec-compile-around)
+  "Use BASH shell for running the specs because of ZSH issues."
+  (let ((shell-file-name "/bin/bash"))
+    ad-do-it))
+(ad-activate 'rspec-compile)
+(setq rspec-use-rake-when-possible nil)
