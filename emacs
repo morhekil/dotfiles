@@ -25,6 +25,7 @@
 (setq ido-use-faces nil)
 
 (projectile-global-mode)
+(setq projectile-enable-caching t)
 
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
 
@@ -96,4 +97,5 @@
   (let ((shell-file-name "/bin/bash"))
     ad-do-it))
 (ad-activate 'rspec-compile)
+(add-to-list 'auto-mode-alist '("\\.rjs$" . ruby-mode))
 (setq rspec-use-rake-when-possible nil)
