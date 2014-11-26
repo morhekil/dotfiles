@@ -67,6 +67,7 @@
 
 ;; auto-complete
 (setq company-idle-delay 0)
+(setq completion-styles '(initials basic partial-completion))
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;; kill all buffers
@@ -99,3 +100,4 @@
 (ad-activate 'rspec-compile)
 (add-to-list 'auto-mode-alist '("\\.rjs$" . ruby-mode))
 (setq rspec-use-rake-when-possible nil)
+(add-hook 'enh-ruby-mode-hook (lambda() (modify-syntax-entry ?_ "w")))
