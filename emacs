@@ -8,6 +8,7 @@
 
 (require 'flymake)
 
+(setq evil-shift-width 2)
 (setq evil-want-C-u-scroll t)
 (setq evil-toggle-key "C-c z")
 (evil-mode 1)
@@ -101,3 +102,4 @@
 (add-to-list 'auto-mode-alist '("\\.rjs$" . ruby-mode))
 (setq rspec-use-rake-when-possible nil)
 (add-hook 'enh-ruby-mode-hook (lambda() (modify-syntax-entry ?_ "w")))
+
