@@ -106,4 +106,5 @@
 (add-to-list 'auto-mode-alist '("\\.rjs$" . ruby-mode))
 (setq rspec-use-rake-when-possible nil)
 (add-hook 'enh-ruby-mode-hook (lambda() (modify-syntax-entry ?_ "w")))
+(add-hook 'enh-ruby-mode-hook (lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
 
