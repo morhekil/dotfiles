@@ -1,3 +1,6 @@
+;; less agressive GC
+(setq gc-cons-threshold 20000000)
+
 (add-to-list 'load-path "~/.emacs.d/lisp/")
 (require 'package)
 ;; (push '("marmalade" . "http://marmalade-repo.org/packages/")
@@ -24,6 +27,7 @@
 ;; disable ido faces to see flx highlights.
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
+(setq flx-ido-threshold 1000)
 
 (projectile-global-mode)
 (setq projectile-enable-caching t)
