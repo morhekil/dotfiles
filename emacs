@@ -82,9 +82,6 @@
   (mapc 'kill-buffer (buffer-list)))
 (define-key global-map (kbd "C-c \\ b d") 'kill-all-buffers)
 
-;; give me back my shell!
-(define-key global-map (kbd "C-z") 'shell)
-
 ;; smart parenthesis
 (require 'smartparens-config)
 (sp-pair "\"" nil :actions :rem)
@@ -107,3 +104,7 @@
 (setq rspec-use-rake-when-possible nil)
 (add-hook 'ruby-mode-hook (lambda() (modify-syntax-entry ?_ "w")))
 (add-hook 'ruby-mode-hook (lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
+
+;; Uniquify duplicate buffer names
+(require 'uniquify)
+(setq uniquify-buffer-name-style 'post-forward)
