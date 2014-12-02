@@ -108,3 +108,8 @@
 ;; Uniquify duplicate buffer names
 (require 'uniquify)
 (setq uniquify-buffer-name-style 'post-forward)
+
+;; org mode setup
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
