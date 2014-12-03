@@ -18,6 +18,9 @@
 ;; enable evil mode in all buffers
 (setq evil-motion-state-modes (append evil-emacs-state-modes evil-motion-state-modes))
 (setq evil-emacs-state-modes nil)
+;; matchit
+(require 'evil-matchit)
+(global-evil-matchit-mode 1)
 
 ;; flx-ido setup
 (require 'flx-ido)
@@ -89,7 +92,8 @@
 ;; (smartparens-global-mode t)
 
 (require 'web-mode)
-(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
 (setq web-mode-enable-css-colorization t)
@@ -113,3 +117,13 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
+
+;; dired setup
+(autoload 'dired-jump "dired-x"
+  "Jump to Dired buffer corresponding to current buffer." t)
+(autoload 'dired-jump-other-window "dired-x"
+  "Like \\[dired-jump] (dired-jump) but in other window." t)
+(define-key global-map (kbd "C-x C-j") 'dired-jump)
+(define-key global-map (kbd "C-x 4 C-j") 'dired-jump-other-window)
+(define-key evil-normal-state-map (kbd "C-x j") 'dired-jump)
+(define-key evil-normal-state-map (kbd "C-x 4 j") 'dired-jump-other-window)
