@@ -97,6 +97,7 @@
 (add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.css\\'" . web-mode))
 (setq web-mode-enable-css-colorization t)
+(setq scss-compile-at-save nil)
 
 ;; Ruby/Rails setup
 (defadvice rspec-compile (around rspec-compile-around)
@@ -106,6 +107,7 @@
 (ad-activate 'rspec-compile)
 (add-to-list 'auto-mode-alist '("\\.rjs$" . ruby-mode))
 (setq rspec-use-rake-when-possible nil)
+(setq rspec-use-bundler-when-possible nil)
 (add-hook 'ruby-mode-hook (lambda() (modify-syntax-entry ?_ "w")))
 (add-hook 'ruby-mode-hook (lambda () (local-set-key (kbd "RET") 'newline-and-indent)))
 
@@ -127,3 +129,5 @@
 (define-key global-map (kbd "C-x 4 C-j") 'dired-jump-other-window)
 (define-key evil-normal-state-map (kbd "C-x j") 'dired-jump)
 (define-key evil-normal-state-map (kbd "C-x 4 j") 'dired-jump-other-window)
+
+(custom-set-variables '(coffee-tab-width 4))
