@@ -27,6 +27,7 @@
 (ido-mode 1)
 (ido-everywhere 1)
 (flx-ido-mode 1)
+(setq ido-auto-merge-work-directories-length -1)
 ;; disable ido faces to see flx highlights.
 (setq ido-enable-flex-matching t)
 (setq ido-use-faces nil)
@@ -132,3 +133,23 @@
 
 (custom-set-variables '(coffee-tab-width 2))
 (add-hook 'coffee-mode-hook (lambda() (modify-syntax-entry ?_ "w")))
+
+;; command-line shell
+(define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
+(define-key comint-mode-map (kbd "<down>") 'comint-next-input)
+
+;; disable tramp, hangs with ssh console messages in the console
+(tramp-unload-tramp)
+
+;; ESS setup
+(setq inferior-R-program-name "/usr/local/bin/R")
+(load "ess-site.el")
+
+;; Haskell setup
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'turn-on-hi2)
+(custom-set-variables
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-type 'cabal-repl))
