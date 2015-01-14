@@ -1,3 +1,5 @@
+;; -*- lexical-binding: t; -*-
+
 ;; less agressive GC
 (setq gc-cons-threshold 20000000)
 
@@ -27,6 +29,7 @@
 (ido-mode 1)
 (ido-everywhere 1)
 (flx-ido-mode 1)
+(setq ido-create-new-buffer 'always)
 (setq ido-auto-merge-work-directories-length -1)
 ;; disable ido faces to see flx highlights.
 (setq ido-enable-flex-matching t)
@@ -56,7 +59,12 @@
 (setq show-paren-delay 0)
 
 ;; line numbers
-(custom-set-faces '(linum ((t (:background "white" :foreground "brightcyan")))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(linum ((t (:background "white" :foreground "brightcyan")))))
 (setq linum-format "%3d ")
 (global-linum-mode 1)
 
@@ -131,7 +139,19 @@
 (define-key evil-normal-state-map (kbd "C-x j") 'dired-jump)
 (define-key evil-normal-state-map (kbd "C-x 4 j") 'dired-jump-other-window)
 
-(custom-set-variables '(coffee-tab-width 2))
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(coffee-tab-width 2)
+ '(custom-safe-themes
+   (quote
+    ("c5a044ba03d43a725bd79700087dea813abcb6beb6be08c7eb3303ed90782482" "e56f1b1c1daec5dbddc50abd00fcd00f6ce4079f4a7f66052cf16d96412a09a9" "756597b162f1be60a12dbd52bab71d40d6a2845a3e3c2584c6573ee9c332a66e" default)))
+ '(haskell-process-auto-import-loaded-modules t)
+ '(haskell-process-log t)
+ '(haskell-process-suggest-remove-import-lines t)
+ '(haskell-process-type (quote cabal-repl)))
 (add-hook 'coffee-mode-hook (lambda() (modify-syntax-entry ?_ "w")))
 
 ;; command-line shell
@@ -148,8 +168,18 @@
 ;; Haskell setup
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-hook 'haskell-mode-hook 'turn-on-hi2)
-(custom-set-variables
- '(haskell-process-suggest-remove-import-lines t)
- '(haskell-process-auto-import-loaded-modules t)
- '(haskell-process-log t)
- '(haskell-process-type 'cabal-repl))
+
+;; Smart-mode-line setup
+(sml/setup)
+(let ((default-color (cons (face-background 'mode-line)
+				   (face-foreground 'mode-line))))
+  (add-hook 'post-command-hook
+	    (lambda ()
+	      (let ((color (cond ((minibufferp) default-color)
+				 ((evil-insert-state-p) '("#e80000" . "#ffffff"))
+				 ((evil-emacs-state-p)  '("#af00d7" . "#ffffff"))
+				 ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
+				 ;; ((buffer-modified-p)   default-color)
+				 (t default-color))))
+		(set-face-background 'mode-line (car color))
+		(set-face-foreground 'mode-line (cdr color))))))
