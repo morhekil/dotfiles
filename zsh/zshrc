@@ -119,7 +119,7 @@ if [ -f .rvmrc ] || [ -f .ruby-version ] || [ -f .ruby-gemset ]; then
 fi
 
 # Emacs
-alias e='TERM=xterm-16color emacs'
+alias e='TERM=xterm-16color emacs -nw'
 
 # HOMEBREW
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
