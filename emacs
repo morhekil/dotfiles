@@ -130,4 +130,5 @@
 (define-key evil-normal-state-map (kbd "C-x j") 'dired-jump)
 (define-key evil-normal-state-map (kbd "C-x 4 j") 'dired-jump-other-window)
 
-(custom-set-variables '(coffee-tab-width 4))
+(custom-set-variables '(coffee-tab-width 2))
+(add-hook 'coffee-mode-hook (lambda() (modify-syntax-entry ?_ "w")))
