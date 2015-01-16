@@ -11,8 +11,6 @@
       package-archives)
 (package-initialize)
 
-(require 'flymake)
-
 (setq evil-shift-width 2)
 (setq evil-want-C-u-scroll t)
 (setq evil-toggle-key "C-c z")
@@ -40,9 +38,11 @@
 (setq projectile-enable-caching t)
 
 (define-key global-map (kbd "C-c SPC") 'ace-jump-mode)
+(define-key global-map (kbd "C-c o") 'ff-find-other-file)
 
 (load-theme 'solarized-light t)
 
+(setq flycheck-indication-mode nil) 
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;; go-mode setup
@@ -58,13 +58,7 @@
 (show-paren-mode 1)
 (setq show-paren-delay 0)
 
-;; line numbers
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(linum ((t (:background "white" :foreground "brightcyan")))))
+;; ;; line numbers
 (setq linum-format "%3d ")
 (global-linum-mode 1)
 
