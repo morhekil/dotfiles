@@ -1,5 +1,5 @@
 ;;; company-go.el --- company-mode backend for Go (using gocode)
-;; Version: 20141024.2248
+;; Version: 20150109.2051
 
 ;; Copyright (C) 2012
 
@@ -11,10 +11,11 @@
 
 ;;; Code:
 
+(require 'company-template)
+
 (eval-when-compile
   (require 'cl)
   (require 'company)
-  (require 'company-template)
   (require 'go-mode))
 
 ;; Close gocode daemon at exit unless it was already running
@@ -25,7 +26,7 @@
        (unless (file-exists-p sock)
          (add-hook 'kill-emacs-hook #'(lambda ()
                                         (ignore-errors
-                                          (call-process "gocode" nil nil nil "close"))))))))
+                                          (call-process company-go-gocode-command nil nil nil "close"))))))))
 
 (defgroup company-go nil
   "Completion back-end for Go."
@@ -47,35 +48,40 @@ symbol is preceded by a \".\", ignoring `company-minimum-prefix-length'."
   :group 'company-go
   :type 'boolean)
 
+(defcustom company-go-gocode-command "gocode"
+  "The command to invoke `gocode'"
+  :group 'company-go
+  :type 'string)
+
 (defun company-go--invoke-autocomplete ()
   (let ((temp-buffer (generate-new-buffer "*gocode*")))
     (prog2
-	(call-process-region (point-min)
-			     (point-max)
-			     "gocode"
-			     nil
-			     temp-buffer
-			     nil
-			     "-f=csv"
-			     "autocomplete"
-			     (or (buffer-file-name) "")
-			     (concat "c" (int-to-string (- (point) 1))))
-	(with-current-buffer temp-buffer (buffer-string))
+        (call-process-region (point-min)
+                             (point-max)
+                             company-go-gocode-command
+                             nil
+                             temp-buffer
+                             nil
+                             "-f=csv"
+                             "autocomplete"
+                             (or (buffer-file-name) "")
+                             (concat "c" (int-to-string (- (point) 1))))
+        (with-current-buffer temp-buffer (buffer-string))
       (kill-buffer temp-buffer))))
 
 (defun company-go--format-meta (candidate)
   (let ((class (nth 0 candidate))
-	(name (nth 1 candidate))
-	(type (nth 2 candidate)))
+        (name (nth 1 candidate))
+        (type (nth 2 candidate)))
     (setq type (if (string-prefix-p "func" type)
-		   (substring type 4 nil)
-		 (concat " " type)))
+                   (substring type 4 nil)
+                 (concat " " type)))
     (concat class " " name type)))
 
 (defun company-go--get-candidates (strings)
   (mapcar (lambda (str)
-	    (let ((candidate (split-string str ",,")))
-	      (propertize (nth 1 candidate) 'meta (company-go--format-meta candidate)))) strings))
+            (let ((candidate (split-string str ",,")))
+              (propertize (nth 1 candidate) 'meta (company-go--format-meta candidate)))) strings))
 
 (defun company-go--candidates ()
   (company-go--get-candidates (split-string (company-go--invoke-autocomplete) "\n" t)))
@@ -101,8 +107,8 @@ symbol is preceded by a \".\", ignoring `company-minimum-prefix-length'."
             (goto-char point)
             (company-go--godef-jump point)))
       (ignore-errors
-         (with-current-buffer temp-buffer
-           (set-buffer-modified-p nil))
+        (with-current-buffer temp-buffer
+          (set-buffer-modified-p nil))
         (kill-buffer temp-buffer)
         (delete-file temp)))))
 
@@ -157,6 +163,18 @@ triggers a completion immediately."
         (setq pos (1+ pos))))
     (substring-no-properties str 0 pos)))
 
+; Uses meta as-is if annotation alignment is enabled. Otherwise removes first
+; two words from the meta, which are usually the class and the name of the
+; entity, the rest is the function signature or type. That's how annotations are
+; supposed to be used.
+(defun company-go--extract-annotation (meta)
+  "Extract annotation from META."
+  (if company-tooltip-align-annotations
+      meta
+    (save-match-data
+      (and (string-match "\\w+ \\w+\\(.+\\)" meta)
+           (match-string 1 meta)))))
+
 ;;;###autoload
 (defun company-go (command &optional arg &rest ignored)
   (case command
@@ -167,7 +185,7 @@ triggers a completion immediately."
     (meta (get-text-property 0 'meta arg))
     (annotation
      (when company-go-show-annotation
-       (get-text-property 0 'meta arg)))
+       (company-go--extract-annotation (get-text-property 0 'meta arg))))
     (location (company-go--location arg))
     (sorted t)
     (post-completion

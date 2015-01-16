@@ -110,7 +110,7 @@ or automatically through a custom `company-clang-prefix-guesser'."
 ;; TODO: Handle Pattern (syntactic hints would be neat).
 ;; Do we ever see OVERLOAD (or OVERRIDE)?
 (defconst company-clang--completion-pattern
-  "^COMPLETION: \\_<\\(%s[a-zA-Z0-9_:<>]*\\)\\(?: : \\(.*\\)$\\)?$")
+  "^COMPLETION: \\_<\\(%s[a-zA-Z0-9_:]*\\)\\(?: : \\(.*\\)$\\)?$")
 
 (defconst company-clang--error-buffer-name "*clang-error*")
 
@@ -150,7 +150,13 @@ or automatically through a custom `company-clang-prefix-guesser'."
      ((string-match "[^:]:[^:]" meta)
       (substring meta (1+ (match-beginning 0))))
      ((string-match "\\((.*)[ a-z]*\\'\\)" meta)
-      (match-string 1 meta)))))
+      (let ((paren (match-beginning 1)))
+        (if (not (eq (aref meta (1- paren)) ?>))
+            (match-string 1 meta)
+          (with-temp-buffer
+            (insert meta)
+            (goto-char paren)
+            (substring meta (1- (search-backward "<"))))))))))
 
 (defun company-clang--strip-formatting (text)
   (replace-regexp-in-string
@@ -182,7 +188,8 @@ or automatically through a custom `company-clang-prefix-guesser'."
 
 (defun company-clang--start-process (prefix callback &rest args)
   (let ((objc (derived-mode-p 'objc-mode))
-        (buf (get-buffer-create "*clang-output*")))
+        (buf (get-buffer-create "*clang-output*"))
+        (process-adaptive-read-buffering nil))
     (with-current-buffer buf (erase-buffer))
     (if (get-buffer-process buf)
         (funcall callback nil)
