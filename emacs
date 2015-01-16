@@ -52,6 +52,8 @@
 (add-hook 'go-mode-hook (lambda ()
 			  (define-key (current-local-map) (kbd "C-c C-f") 'godef-jump)
 			  (define-key (current-local-map) (kbd "C-x 4 C-c C-f") 'godef-jump-other-window)
+			  (define-key (current-local-map) (kbd "C-c , a") 'go-test-current-project)
+			  (define-key (current-local-map) (kbd "C-c , v") 'go-test-current-file)
 			  ))
 
 ;; highlighting parentheses
