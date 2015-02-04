@@ -127,6 +127,8 @@
 (define-key global-map "\C-cl" 'org-store-link)
 (define-key global-map "\C-ca" 'org-agenda)
 (setq org-log-done t)
+(require 'ox-md)
+(require 'ox-gfm)
 
 ;; dired setup
 (autoload 'dired-jump "dired-x"
