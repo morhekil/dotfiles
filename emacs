@@ -155,6 +155,15 @@
  '(haskell-process-type (quote cabal-repl)))
 (add-hook 'coffee-mode-hook (lambda() (modify-syntax-entry ?_ "w")))
 
+;; emmet-mode
+(require 'emmet-mode)
+(add-hook 'sgml-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'html-mode-hook 'emmet-mode) ;; Auto-start on any markup modes
+(add-hook 'css-mode-hook  'emmet-mode) ;; enable Emmet's css abbreviation.
+;; (add-hook 'emmet-mode-hook (define-key evil-insert-state-map (kbd "C-e x") 'emmet-expand-line))
+(add-hook 'emmet-mode-hook (lambda ()
+			  (local-set-key (kbd "C-c j") 'emmet-expand-line)))
+
 ;; command-line shell
 (define-key comint-mode-map (kbd "<up>") 'comint-previous-input)
 (define-key comint-mode-map (kbd "<down>") 'comint-next-input)
