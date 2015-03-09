@@ -209,7 +209,6 @@ attention to case differences."
     json-jsonlint
     less
     lua
-    make
     perl
     perl-perlcritic
     php
@@ -2126,6 +2125,7 @@ the syntax checker to the buffer-local value of
 `flycheck-disabled-checkers'.  With prefix arg, prompt for a
 disabled syntax checker and re-enable it by removing it from the
 buffer-local value of `flycheck-disabled-checkers'."
+  (declare (interactive-only "Directly set `flycheck-disabled-checkers' instead"))
   (interactive
    (let* ((enable current-prefix-arg)
           (candidates (if enable flycheck-disabled-checkers flycheck-checkers))
@@ -2143,8 +2143,6 @@ buffer-local value of `flycheck-disabled-checkers'."
       (setq flycheck-disabled-checkers (remq checker flycheck-disabled-checkers))
     (unless (memq checker flycheck-disabled-checkers)
       (push checker flycheck-disabled-checkers))))
-(put 'flycheck-disable-checker 'interactive-only
-     "Directly set `flycheck-disabled-checkers' instead")
 
 
 ;;; Syntax checks for the current buffer
@@ -4433,6 +4431,7 @@ This command is intended for interactive use only.  In Lisp, just
 `let'-bind the corresponding variable, or set it directly.  Use
 `flycheck-checker-executable-variable' to obtain the executable
 variable symbol for a syntax checker."
+  (declare (interactive-only "Set the executable variable directly instead"))
   (interactive
    (let* ((checker (read-flycheck-checker "Syntax checker: "))
           (default-executable (flycheck-checker-default-executable checker))
@@ -4445,8 +4444,6 @@ variable symbol for a syntax checker."
     (user-error "%s is no executable" executable))
   (let ((variable (flycheck-checker-executable-variable checker)))
     (set (make-local-variable variable) executable)))
-(put 'flycheck-set-checker-executable 'interactive-only
-     "Set the executable variable directly instead")
 
 
 ;;; Configuration files and options for command checkers
@@ -5954,7 +5951,7 @@ take an io.Writer as their first argument, like Fprintf,
   "A Go syntax checker using the `go tool vet' command.
 
 See URL `http://golang.org/cmd/go/' and URL
-`http://godoc.org/code.google.com/p/go.tools/cmd/vet'."
+`http://godoc.org/golang.org/x/tools/cmd/vet'."
   :command ("go" "tool" "vet"
             (option "-printfuncs=" flycheck-go-vet-print-functions concat
                     flycheck-option-comma-separated-list)
@@ -6347,28 +6344,6 @@ See URL `http://www.lua.org/'."
           (minimal-match (zero-or-more not-newline))
           ":" line ": " (message) line-end))
   :modes lua-mode)
-
-(flycheck-define-checker make
-  "A Makefile syntax checker using the POSIX compatible Make command.
-
-See URL `http://pubs.opengroup.org/onlinepubs/9699919799/utilities/make.html'."
-  :command ("make" "-n" "-f" source-inplace)
-  :error-patterns
-  (;; GNU Make
-   ;; http://www.gnu.org/software/make/
-   (error line-start (file-name) ":" line ": " (message) line-end)
-   ;; NetBSD Make
-   ;; http://netbsd.gw.com/cgi-bin/man-cgi?make++NetBSD-current
-   (error line-start
-          (zero-or-more not-newline) ; make command name
-          ": \"" (file-name) "\" line " line ": " (message) line-end)
-   ;; FreeBSD Make (unmaintained)
-   ;; http://www.freebsd.org/cgi/man.cgi?query=make&sektion=1
-   (error line-start "\"" (file-name) "\", line " line ": " (message) line-end)
-   ;; OpenBSD Make (unmaintained)
-   ;; http://www.openbsd.org/cgi-bin/man.cgi?query=make
-   (error line-start (message) " (" (file-name) ":" line ")" line-end))
-  :modes (makefile-mode makefile-gmake-mode makefile-bsdmake-mode))
 
 (flycheck-define-checker perl
   "A Perl syntax checker using the Perl interpreter.
@@ -6932,10 +6907,10 @@ Relative paths are relative to the file being checked."
 (flycheck-define-checker rust
   "A Rust syntax checker using Rust compiler.
 
-This syntax checker needs Rust 0.10 or newer.
+This syntax checker needs Rust 1.0.0 alpha or newer.
 
 See URL `http://www.rust-lang.org'."
-  :command ("rustc" "--no-trans"
+  :command ("rustc" "-Z" "no-trans"
             (option "--crate-type" flycheck-rust-crate-type)
             (option-flag "--test" flycheck-rust-check-tests)
             (option-list "-L" flycheck-rust-library-path concat)

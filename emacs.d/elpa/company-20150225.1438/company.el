@@ -5,7 +5,7 @@
 ;; Author: Nikolaj Schumacher
 ;; Maintainer: Dmitry Gutov <dgutov@yandex.ru>
 ;; URL: http://company-mode.github.io/
-;; Version: 0.8.8
+;; Version: 0.9.0-cvs
 ;; Keywords: abbrev, convenience, matching
 ;; Package-Requires: ((emacs "24.1") (cl-lib "0.5"))
 
@@ -315,7 +315,7 @@ This doesn't include the margins and the scroll bar."
                         (assq backend company-safe-backends))
                 (cl-return t))))))
 
-(defcustom company-backends `(,@(unless (version< "24.3.50" emacs-version)
+(defcustom company-backends `(,@(unless (version< "24.3.51" emacs-version)
                                   (list 'company-elisp))
                               company-bbdb
                               company-nxml company-css
@@ -614,6 +614,8 @@ asynchronous call into synchronous.")
     (define-key keymap (kbd "M-p") 'company-select-previous)
     (define-key keymap (kbd "<down>") 'company-select-next-or-abort)
     (define-key keymap (kbd "<up>") 'company-select-previous-or-abort)
+    (define-key keymap [remap scroll-up-command] 'company-next-page)
+    (define-key keymap [remap scroll-down-command] 'company-previous-page)
     (define-key keymap [down-mouse-1] 'ignore)
     (define-key keymap [down-mouse-3] 'ignore)
     (define-key keymap [mouse-1] 'company-complete-mouse)
@@ -660,9 +662,26 @@ asynchronous call into synchronous.")
       (unless (keywordp b)
         (company-init-backend b))))))
 
-(defvar company-default-lighter " company")
+(defcustom company-lighter-base "company"
+  "Base string to use for the `company-mode' lighter."
+  :type 'string
+  :package-version '(company . "0.8.10"))
 
-(defvar-local company-lighter company-default-lighter)
+(defvar company-lighter '(" "
+                          (company-backend
+                           (:eval
+                            (if (consp company-backend)
+                                (company--group-lighter (nth company-selection
+                                                             company-candidates)
+                                                        company-lighter-base)
+                              (symbol-name company-backend)))
+                           company-lighter-base))
+  "Mode line lighter for Company.
+
+The value of this variable is a mode line template as in
+`mode-line-format'.")
+
+(put 'company-lighter 'risky-local-variable t)
 
 ;;;###autoload
 (define-minor-mode company-mode
@@ -1043,34 +1062,36 @@ can retrieve meta-data for them."
             (mod selection company-candidates-length)
           (max 0 (min (1- company-candidates-length) selection))))
   (when (or force-update (not (equal selection company-selection)))
-    (company--update-group-lighter (nth selection company-candidates))
     (setq company-selection selection
           company-selection-changed t)
     (company-call-frontends 'update)))
 
-(defun company--update-group-lighter (candidate)
-  (when (listp company-backend)
-    (let ((backend (or (get-text-property 0 'company-backend candidate)
-                       (car company-backend))))
-      (when (and backend (symbolp backend))
-        (let ((name (replace-regexp-in-string "company-\\|-company" ""
-                                              (symbol-name backend))))
-          (setq company-lighter (format " company-<%s>" name)))))))
+(defun company--group-lighter (candidate base)
+  (let ((backend (or (get-text-property 0 'company-backend candidate)
+                     (car company-backend))))
+    (when (and backend (symbolp backend))
+      (let ((name (replace-regexp-in-string "company-\\|-company" ""
+                                            (symbol-name backend))))
+        (format "%s-<%s>" base name)))))
 
 (defun company-update-candidates (candidates)
   (setq company-candidates-length (length candidates))
-  (if (> company-selection 0)
+  (if company-selection-changed
       ;; Try to restore the selection
       (let ((selected (nth company-selection company-candidates)))
         (setq company-selection 0
               company-candidates candidates)
         (when selected
-          (while (and candidates (string< (pop candidates) selected))
-            (cl-incf company-selection))
-          (unless candidates
-            ;; Make sure selection isn't out of bounds.
-            (setq company-selection (min (1- company-candidates-length)
-                                         company-selection)))))
+          (catch 'found
+            (while candidates
+              (let ((candidate (pop candidates)))
+                (when (and (string= candidate selected)
+                           (equal (company-call-backend 'annotation candidate)
+                                  (company-call-backend 'annotation selected)))
+                  (throw 'found t)))
+              (cl-incf company-selection))
+            (setq company-selection 0
+                  company-selection-changed nil))))
     (setq company-selection 0
           company-candidates candidates))
   ;; Calculate common.
@@ -1446,9 +1467,6 @@ from the rest of the back-ends in the group, if any, will be left at the end."
                 (message "No completion found"))
             (when company--manual-action
               (setq company--manual-prefix prefix))
-            (if (symbolp backend)
-                (setq company-lighter (concat " " (symbol-name backend)))
-              (company--update-group-lighter (car c)))
             (company-update-candidates c)
             (run-hook-with-args 'company-completion-started-hook
                                 (company-explicit-action-p))
@@ -1486,7 +1504,6 @@ from the rest of the back-ends in the group, if any, will be left at the end."
           company-selection-changed nil
           company--manual-action nil
           company--manual-prefix nil
-          company-lighter company-default-lighter
           company--point-max nil
           company-point nil)
     (when company-timer
@@ -1571,12 +1588,18 @@ from the rest of the back-ends in the group, if any, will be left at the end."
 
 (defvar-local company-search-string "")
 
-(defvar-local company-search-lighter " Search: \"\"")
+(defvar company-search-lighter '(" "
+                                 (company-search-filtering "Filter" "Search")
+                                 ": \""
+                                 company-search-string
+                                 "\""))
 
 (defvar-local company-search-filtering nil
   "Non-nil to filter the completion candidates by the search string")
 
 (defvar-local company--search-old-selection 0)
+
+(defvar-local company--search-old-changed nil)
 
 (defun company--search (text lines)
   (let ((quoted (regexp-quote text))
@@ -1613,12 +1636,7 @@ from the rest of the back-ends in the group, if any, will be left at the end."
   (let* ((pos (company--search new (nthcdr company-selection company-candidates))))
     (if (null pos)
         (ding)
-      (setq company-search-string new
-            company-search-lighter (format " %s: \"%s\""
-                                           (if company-search-filtering
-                                               "Filter"
-                                             "Search")
-                                           new))
+      (setq company-search-string new)
       (company-set-selection (+ company-selection pos) t))))
 
 (defun company--search-assert-input ()
@@ -1663,7 +1681,8 @@ from the rest of the back-ends in the group, if any, will be left at the end."
   (interactive)
   (company--search-assert-enabled)
   (company-search-mode 0)
-  (company-set-selection company--search-old-selection t))
+  (company-set-selection company--search-old-selection t)
+  (setq company-selection-changed company--search-old-changed))
 
 (defun company-search-other-char ()
   (interactive)
@@ -1709,6 +1728,8 @@ from the rest of the back-ends in the group, if any, will be left at the end."
     (define-key keymap (vector meta-prefix-char t) 'company-search-other-char)
     (define-key keymap (kbd "M-n") 'company-select-next)
     (define-key keymap (kbd "M-p") 'company-select-previous)
+    (define-key keymap (kbd "<down>") 'company-select-next-or-abort)
+    (define-key keymap (kbd "<up>") 'company-select-previous-or-abort)
     (define-key keymap "\e\e\e" 'company-search-other-char)
     (define-key keymap [escape escape escape] 'company-search-other-char)
     (define-key keymap (kbd "DEL") 'company-search-delete-char)
@@ -1717,6 +1738,8 @@ from the rest of the back-ends in the group, if any, will be left at the end."
     (define-key keymap "\C-s" 'company-search-repeat-forward)
     (define-key keymap "\C-r" 'company-search-repeat-backward)
     (define-key keymap "\C-o" 'company-search-toggle-filtering)
+    (dotimes (i 10)
+      (define-key keymap (read-kbd-macro (format "M-%d" i)) 'company-complete-number))
     keymap)
   "Keymap used for incrementally searching the completion candidates.")
 
@@ -1728,13 +1751,15 @@ Don't start this directly, use `company-search-candidates' or
   (if company-search-mode
       (if (company-manual-begin)
           (progn
-            (setq company--search-old-selection company-selection)
-            (company-call-frontends 'update))
+            (setq company--search-old-selection company-selection
+                  company--search-old-changed company-selection-changed)
+            (company-call-frontends 'update)
+            (company-enable-overriding-keymap company-search-map))
         (setq company-search-mode nil))
     (kill-local-variable 'company-search-string)
-    (kill-local-variable 'company-search-lighter)
     (kill-local-variable 'company-search-filtering)
     (kill-local-variable 'company--search-old-selection)
+    (kill-local-variable 'company--search-old-changed)
     (when company-backend
       (company--search-update-predicate "")
       (company-call-frontends 'update))
@@ -1760,8 +1785,7 @@ Regular characters are appended to the search string.
 The command `company-search-toggle-filtering' (\\[company-search-toggle-filtering])
 uses the search string to filter the completion candidates."
   (interactive)
-  (company-search-mode 1)
-  (company-enable-overriding-keymap company-search-map))
+  (company-search-mode 1))
 
 (defvar company-filter-map
   (let ((keymap (make-keymap)))
@@ -1810,6 +1834,20 @@ and invoke the normal binding."
       (company-select-previous)
     (company-abort)
     (company--unread-last-input)))
+
+(defun company-next-page ()
+  "Select the candidate one page further."
+  (interactive)
+  (when (company-manual-begin)
+    (company-set-selection (+ company-selection
+                              company-tooltip-limit))))
+
+(defun company-previous-page ()
+  "Select the candidate one page earlier."
+  (interactive)
+  (when (company-manual-begin)
+    (company-set-selection (- company-selection
+                              company-tooltip-limit))))
 
 (defvar company-pseudo-tooltip-overlay)
 
@@ -1977,7 +2015,7 @@ character, stripping the modifiers.  That character must be a digit."
     (current-buffer)))
 
 (defvar company--electric-commands
-  '(scroll-other-window scroll-other-window-down)
+  '(scroll-other-window scroll-other-window-down mwheel-scroll)
   "List of Commands that won't break out of electric commands.")
 
 (defmacro company--electric-do (&rest body)
@@ -1991,9 +2029,12 @@ character, stripping the modifiers.  That character must be a digit."
          (and (< (window-height) height)
               (< (- (window-height) row 2) company-tooltip-limit)
               (recenter (- (window-height) row 2)))
-         (while (memq (setq cmd (key-binding (vector (list (read-event)))))
+         (while (memq (setq cmd (key-binding (read-key-sequence-vector nil)))
                       company--electric-commands)
-           (call-interactively cmd))
+           (condition-case err
+               (call-interactively cmd)
+             ((beginning-of-buffer end-of-buffer)
+              (message (error-message-string err)))))
          (company--unread-last-input)))))
 
 (defun company--unread-last-input ()
@@ -2004,32 +2045,36 @@ character, stripping the modifiers.  That character must be a digit."
 (defun company-show-doc-buffer ()
   "Temporarily show the documentation buffer for the selection."
   (interactive)
-  (company--electric-do
-    (let* ((selected (nth company-selection company-candidates))
-           (doc-buffer (or (company-call-backend 'doc-buffer selected)
-                           (error "No documentation available"))))
-      (with-current-buffer doc-buffer
-        (goto-char (point-min)))
-      (display-buffer doc-buffer t))))
+  (let (other-window-scroll-buffer)
+    (company--electric-do
+      (let* ((selected (nth company-selection company-candidates))
+             (doc-buffer (or (company-call-backend 'doc-buffer selected)
+                             (error "No documentation available"))))
+        (setq other-window-scroll-buffer (get-buffer doc-buffer))
+        (with-current-buffer doc-buffer
+          (goto-char (point-min)))
+        (display-buffer doc-buffer t)))))
 (put 'company-show-doc-buffer 'company-keep t)
 
 (defun company-show-location ()
   "Temporarily display a buffer showing the selected candidate in context."
   (interactive)
-  (company--electric-do
-    (let* ((selected (nth company-selection company-candidates))
-           (location (company-call-backend 'location selected))
-           (pos (or (cdr location) (error "No location available")))
-           (buffer (or (and (bufferp (car location)) (car location))
-                       (find-file-noselect (car location) t))))
-      (with-selected-window (display-buffer buffer t)
-        (save-restriction
-          (widen)
-          (if (bufferp (car location))
-              (goto-char pos)
-            (goto-char (point-min))
-            (forward-line (1- pos))))
-        (set-window-start nil (point))))))
+  (let (other-window-scroll-buffer)
+    (company--electric-do
+      (let* ((selected (nth company-selection company-candidates))
+             (location (company-call-backend 'location selected))
+             (pos (or (cdr location) (error "No location available")))
+             (buffer (or (and (bufferp (car location)) (car location))
+                         (find-file-noselect (car location) t))))
+        (setq other-window-scroll-buffer (get-buffer buffer))
+        (with-selected-window (display-buffer buffer t)
+          (save-restriction
+            (widen)
+            (if (bufferp (car location))
+                (goto-char pos)
+              (goto-char (point-min))
+              (forward-line (1- pos))))
+          (set-window-start nil (point)))))))
 (put 'company-show-location 'company-keep t)
 
 ;;; package functions ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -2092,6 +2137,39 @@ If SHOW-VERSION is non-nil, show the version in the echo area."
     (if show-version
         (message "Company version: %s" (lm-version))
       (lm-version))))
+
+(defun company-diag ()
+  (interactive)
+  "Pop a buffer with information about completions at point."
+  (let* ((bb company-backends)
+         backend
+         (prefix (cl-loop for b in bb
+                          thereis (let ((company-backend b))
+                                    (setq backend b)
+                                    (company-call-backend 'prefix))))
+         cc)
+    (when (stringp prefix)
+      (setq cc (let ((company-backend backend))
+                 (company-call-backend 'candidates prefix))))
+    (pop-to-buffer (get-buffer-create "*company-diag*"))
+    (setq buffer-read-only nil)
+    (erase-buffer)
+    (insert "company-backends: " (pp-to-string bb))
+    (insert "\n")
+    (insert "Used backend: " (pp-to-string backend))
+    (insert "\n")
+    (insert "Prefix: " (pp-to-string prefix))
+    (insert "\n")
+    (insert (message  "Completions:"))
+    (unless cc (insert " none"))
+    (save-excursion
+      (let ((company-backend backend))
+        (dolist (c cc)
+          (insert "\n  " (prin1-to-string c))
+          (let ((ann (company-call-backend 'annotation)))
+            (when ann
+              (insert " " (prin1-to-string ann))))))
+      (special-mode))))
 
 ;;; pseudo-tooltip ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
@@ -2193,9 +2271,12 @@ If SHOW-VERSION is non-nil, show the version in the echo area."
                (string-match (regexp-quote company-search-string) value
                              (length company-prefix)))
           (let ((beg (+ margin (match-beginning 0)))
-                (end (+ margin (match-end 0))))
-            (add-text-properties beg end '(face company-tooltip-search)
-                                 line))
+                (end (+ margin (match-end 0)))
+                (width (- width (length right))))
+            (when (< beg width)
+              (add-text-properties beg (min end width)
+                                   '(face company-tooltip-search)
+                                   line)))
         (add-text-properties 0 width '(face company-tooltip-selection
                                        mouse-face company-tooltip-selection)
                              line)
@@ -2372,7 +2453,7 @@ If SHOW-VERSION is non-nil, show the version in the echo area."
     (dotimes (_ len)
       (let* ((value (pop lines-copy))
              (annotation (company-call-backend 'annotation value)))
-        (setq value (company--clean-string value))
+        (setq value (company--clean-string (company-reformat value)))
         (when annotation
           (when company-tooltip-align-annotations
             ;; `lisp-completion-at-point' adds a space.
@@ -2399,7 +2480,7 @@ If SHOW-VERSION is non-nil, show the version in the echo area."
 
       (dotimes (i len)
         (let* ((item (pop items))
-               (str (company-reformat (car item)))
+               (str (car item))
                (annotation (cdr item))
                (right (company-space-string company-tooltip-margin))
                (width width))
