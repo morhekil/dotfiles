@@ -219,17 +219,7 @@
 ;; Smart-mode-line setup
 (sml/setup)
 (let ((default-color (cons (face-background 'mode-line)
-				   (face-foreground 'mode-line))))
-  (add-hook 'post-command-hook
-	    (lambda ()
-	      (let ((color (cond ((minibufferp) default-color)
-				 ((evil-insert-state-p) '("#e80000" . "#ffffff"))
-				 ((evil-emacs-state-p)  '("#af00d7" . "#ffffff"))
-				 ;; ((buffer-modified-p)   '("#006fa0" . "#ffffff"))
-				 ((buffer-modified-p)   default-color)
-				 (t default-color))))
-		(set-face-background 'mode-line (car color))
-		(set-face-foreground 'mode-line (cdr color))))))
+				   (face-foreground 'mode-line)))))
 
 ;; ElasticSearch mode
 (autoload 'es-mode "es-mode.el" "Major mode for editing Elasticsearch queries" t)
