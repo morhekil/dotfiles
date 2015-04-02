@@ -25,7 +25,8 @@
 (require 'evil-surround)
 (global-evil-surround-mode 1)
 ;; git
-(require 'git-blame)
+;; (require 'git-blame)
+(require 'egg)
 ;; 80-columns marker
 (require 'whitespace)
 (setq whitespace-style '(face empty tabs lines-tail trailing))
