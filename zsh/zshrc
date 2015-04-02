@@ -121,6 +121,9 @@ fi
 # Emacs
 alias e='TERM=xterm-16color emacs -nw'
 
+# Docker
+alias docker-clean="docker ps -a | grep Exited | awk '{ print \$1; }' | xargs -n1 docker rm"
+
 # HOMEBREW
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
