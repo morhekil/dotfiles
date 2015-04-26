@@ -146,6 +146,7 @@ before layers configuration."
   (setq-default ruby-enable-ruby-on-rails-support t)
   (setq-default ruby-version-manager 'rvm)
   (setq solarized-use-less-bold t)
+  (setq solarized-emphasize-indicators nil)
   )
 
 (defun dotspacemacs/config ()
