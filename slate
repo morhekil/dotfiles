@@ -13,4 +13,5 @@ bind x:cmd;alt;ctrl ${full}
 
 bind f:${hyper} focus "iTerm"
 bind c:${hyper} focus "Google Chrome"
-bind e:${hyper} focus "Postbox"
+bind e:${hyper} focus "Emacs"
+bind d:${hyper} focus "Postbox"
