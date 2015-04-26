@@ -119,7 +119,8 @@ if [ -f .rvmrc ] || [ -f .ruby-version ] || [ -f .ruby-gemset ]; then
 fi
 
 # Emacs
-alias e='TERM=xterm-16color emacs -nw'
+# alias e='TERM=xterm emacs -nw'
+alias e='emacsclient -n'
 
 # Docker
 alias docker-clean="docker ps -a | grep Exited | awk '{ print \$1; }' | xargs -n1 docker rm"
