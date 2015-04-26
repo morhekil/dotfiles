@@ -145,6 +145,7 @@ before layers configuration."
   ;; rails setup
   (setq-default ruby-enable-ruby-on-rails-support t)
   (setq-default ruby-version-manager 'rvm)
+  (setq solarized-use-less-bold t)
   )
 
 (defun dotspacemacs/config ()
@@ -156,6 +157,7 @@ layers configuration."
   ;; highlight long lines
   (setq whitespace-style '(face empty tabs lines-tail trailing))
   (global-whitespace-mode t)
+  (setq whitespace-action '(auto-cleanup))
   ;; go-mode setup
   (setq gofmt-command "goimports")
   (add-hook 'before-save-hook 'gofmt-before-save)
@@ -171,6 +173,9 @@ layers configuration."
     (interactive)
     (mapc 'kill-buffer (buffer-list)))
   (evil-leader/set-key "ob" 'kill-all-buffers)
+  ;; customize solarize's color selection
+  (custom-set-faces
+    '(font-lock-constant-face ((t (:foreground "#cb4b16" :weight unspecified)))))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
