@@ -177,7 +177,11 @@ layers configuration."
   ;; customize solarize's color selection
   (custom-set-faces
     '(font-lock-constant-face ((t (:foreground "#cb4b16" :weight unspecified)))))
+  ;; rubocop-compliant indentation for enh-ruby-mode
+  (custom-set-variables
+   '(enh-ruby-hanging-brace-deep-indent-level 1)
+   '(enh-ruby-hanging-brace-indent-level 2)
+   '(enh-ruby-hanging-paren-deep-indent-level 0))
 )
-
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
