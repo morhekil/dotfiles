@@ -27,7 +27,7 @@ which require an initialization must be listed explicitly in the list.")
 (defvar ruby-min-excluded-packages '()
   "List of packages to exclude.")
 
-(defun ruby/init-rvm ()
+(defun ruby-min/init-rvm ()
   "Initialize RVM mode"
   (use-package rvm
     :defer t
@@ -35,7 +35,7 @@ which require an initialization must be listed explicitly in the list.")
     :config (add-hook 'ruby-mode-hook
                       (lambda () (rvm-activate-corresponding-ruby)))))
 
-(defun ruby/init-projectile-rails ()
+(defun ruby-min/init-projectile-rails ()
   (use-package projectile-rails
     :defer t
     :init
@@ -90,7 +90,10 @@ which require an initialization must be listed explicitly in the list.")
       ;; Refactoring
       (evil-leader/set-key "mrRx" 'projectile-rails-extract-region))))
 
-(defun ruby/init-yaml-mode ()
+(defun ruby-min/post-init-flycheck ()
+    (add-hook 'ruby-mode-hook 'flycheck-mode))
+
+(defun ruby-min/init-yaml-mode ()
   "Initialize YAML mode"
   (use-package yaml-mode
     :mode (("\\.\\(yml\\|yaml\\)\\'" . yaml-mode)
@@ -99,16 +102,16 @@ which require an initialization must be listed explicitly in the list.")
                       '(lambda ()
                          (define-key yaml-mode-map "\C-m" 'newline-and-indent)))))
 
-(defun ruby/init-feature-mode ()
+(defun ruby-min/init-feature-mode ()
   "Initialize Cucumber feature mode"
   (use-package feature-mode
     :mode (("\\.feature\\'" . feature-mode))))
 
-(defun ruby/init-haml-mode ()
+(defun ruby-min/init-haml-mode ()
   (use-package haml-mode
     :defer t))
 
-(defun ruby/init-ruby-test-mode ()
+(defun ruby-min/init-ruby-test-mode ()
   "Define keybindings for ruby test mode"
   (use-package ruby-test-mode
     :defer t
@@ -120,12 +123,12 @@ which require an initialization must be listed explicitly in the list.")
         "mtb" 'ruby-test-run
         "mtt" 'ruby-test-run-at-point))))
 
-;; For each package, define a function ruby-min/init-<package-ruby-min>
-;;
-;; (defun ruby-min/init-my-package ()
-;;   "Initialize my package"
-;;   )
-;;
-;; Often the body of an initialize function uses `use-package'
-;; For more info on `use-package', see readme:
-;; https://github.com/jwiegley/use-package
+(when (configuration-layer/layer-usedp 'auto-completion)
+  (defun ruby-min/post-init-company ()
+    (spacemacs|add-company-hook ruby-mode))
+
+  (defun ruby-min/init-robe ()
+    (use-package robe
+      :if (configuration-layer/package-usedp 'company)
+      :defer t
+      :init (push 'company-robe company-backends-ruby-mode))))
