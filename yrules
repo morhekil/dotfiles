@@ -2,7 +2,7 @@ defaultTarget="all"
 
 declare -A dotpaths
 
-dotfiles=("ackrc aprc aria2/aria2.conf gitconfig lftprc pryrc slate slate.js tmux.conf vim vimrc zsh zshrc /bin/sack /bin/sag /bin/sgrep sackrc percol.d")
+dotfiles=("ackrc aprc aria2/aria2.conf gitconfig lftprc pryrc slate slate.js tmux.conf vim vimrc zsh zshrc /bin/sack /bin/sag /bin/sgrep sackrc percol.d spacemacs emacs.d/private")
 dotpaths[zshrc]="zsh/zshrc"
 dotpaths[vimrc]="vim/vimrc"
 dotpaths[gitconfig]="git/gitconfig"
@@ -11,7 +11,7 @@ dotpaths["/bin/sack"]="sack/sack"
 dotpaths["/bin/sag"]="sack/sag"
 dotpaths["/bin/sgrep"]="sack/sgrep"
 dotpaths[spacemacs]="spacemacs/spacemacs"
-dotpaths[".emacs.d/private"]="spacemacs/private"
+dotpaths["emacs.d/private"]="spacemacs/private"
 
 dep_all() {
   local deps=""
