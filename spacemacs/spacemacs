@@ -182,6 +182,10 @@ layers configuration."
     '(font-lock-constant-face ((t (:foreground "#cb4b16" :weight unspecified)))))
   ;; ruby customisations
   (add-hook 'ruby-mode-hook (lambda() (modify-syntax-entry ?_ "w")))
+  ;; js customisations
+  (setq-default js2-basic-offset 2)
+  (setq javascript-indent-level 2)
+  (setq js-indent-level 2)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
