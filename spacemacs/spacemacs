@@ -34,6 +34,8 @@
      puppet
      ansible
      dockerfile
+     emacs-lisp
+     shell
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -161,6 +163,7 @@ layers configuration."
   (setq whitespace-action '(auto-cleanup))
   ;; go-mode setup
   (setq gofmt-command "goimports")
+  (setenv "GOPATH" "/Users/Saruman/go")
   (add-hook 'before-save-hook 'gofmt-before-save)
   ;; line numbers
   (setq linum-format "%3d ")
