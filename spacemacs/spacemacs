@@ -30,6 +30,7 @@
      html
      restclient
      javascript
+     lua
      git
      puppet
      ansible
