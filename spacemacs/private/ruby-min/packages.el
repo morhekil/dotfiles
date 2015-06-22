@@ -123,12 +123,20 @@ which require an initialization must be listed explicitly in the list.")
         "mtb" 'ruby-test-run
         "mtt" 'ruby-test-run-at-point))))
 
+(defun ruby-min/init-robe ()
+  (use-package robe
+    :defer t
+    :init
+    (progn
+      (add-hook 'ruby-mode-hook 'robe-mode)
+      (when (configuration-layer/layer-usedp 'auto-completion)
+        (push 'company-robe company-backends-ruby-mode)))
+    :config
+    (progn
+      (spacemacs|hide-lighter robe-mode))
+
 (when (configuration-layer/layer-usedp 'auto-completion)
   (defun ruby-min/post-init-company ()
-    (spacemacs|add-company-hook ruby-mode))
-
-  (defun ruby-min/init-robe ()
-    (use-package robe
-      :if (configuration-layer/package-usedp 'company)
-      :defer t
-      :init (push 'company-robe company-backends-ruby-mode))))
+    (spacemacs|add-company-hook ruby-mode)
+    (eval-after-load 'company-dabbrev-code
+      '(push 'ruby-mode company-dabbrev-code-modes))))
