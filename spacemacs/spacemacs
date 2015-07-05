@@ -184,7 +184,11 @@ layers configuration."
   (custom-set-faces
     '(font-lock-constant-face ((t (:foreground "#cb4b16" :weight unspecified)))))
   ;; ruby customisations
-  (add-hook 'ruby-mode-hook (lambda() (modify-syntax-entry ?_ "w")))
+  (add-hook 'ruby-mode-hook (lambda() (modify-syntax-entry ?_ "w"))) ;; underscore is a part of the word
+  (add-hook 'ruby-mode-hook (lambda() (modify-syntax-entry ?: "."))) ;; but colon isn't
+
+  (setq ruby-version-manager "rvm")
+  (setq ruby-enable-ruby-on-rails-support t)
   ;; js customisations
   (setq-default js2-basic-offset 2)
   (setq javascript-indent-level 2)
