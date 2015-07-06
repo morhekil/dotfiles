@@ -31,7 +31,8 @@
      restclient
      javascript
      lua
-     git
+     (git :variables
+          git-magit-status-fullscreen t)
      puppet
      ansible
      dockerfile
