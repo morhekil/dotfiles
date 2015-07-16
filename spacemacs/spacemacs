@@ -153,7 +153,10 @@ before layers configuration."
   (setq solarized-emphasize-indicators nil)
   (setq solarized-scale-org-headlines nil)
   (setq solarized-use-variable-pitch nil)
-  )
+  ;; disable smartparens highlighting
+  (setq sp-highlight-pair-overlay nil)
+  (setq sp-highlight-wrap-overlay nil)
+  (setq sp-highlight-wrap-tag-overlay nil))
 
 (defun dotspacemacs/config ()
   "Configuration function.
