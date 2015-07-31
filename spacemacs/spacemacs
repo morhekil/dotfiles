@@ -25,8 +25,6 @@
      syntax-checking
      go
      ruby-min
-     osx
-     php
      html
      restclient
      javascript
@@ -38,6 +36,7 @@
      dockerfile
      emacs-lisp
      shell
+     osxhacks
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -197,11 +196,6 @@ layers configuration."
   (setq-default js2-basic-offset 2)
   (setq javascript-indent-level 2)
   (setq js-indent-level 2)
-
-  (setq x-select-enable-clipboard nil)
-  ;; direct clipboard yank/kill
-  (evil-leader/set-key "oy" 'clipboard-kill-ring-save)
-  (evil-leader/set-key "op" 'clipboard-yank)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
