@@ -4,6 +4,13 @@
   "If non nil the option key is mapped to meta. Set to `nil` if you need the
   option key to type common characters.")
 
+;;; fix UTF8 clipboard
+;; handle emacs utf-8 input
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(prefer-coding-system 'utf-8)
+(setenv "LANG" "en_US.UTF-8")
+
 ;;; Source: http://stackoverflow.com/questions/22849281/on-emacs-for-osx-how-to-keep-kill-ring-and-clipboard-separate
 
 ;;; Tested on:
