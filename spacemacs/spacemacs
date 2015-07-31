@@ -36,6 +36,7 @@
      dockerfile
      emacs-lisp
      shell
+     react
      osxhacks
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -196,6 +197,13 @@ layers configuration."
   (setq-default js2-basic-offset 2)
   (setq javascript-indent-level 2)
   (setq js-indent-level 2)
+  ;; web-mode
+  (setq-default
+   css-indent-offset 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-attr-indent-offset 2)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
