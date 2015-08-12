@@ -204,6 +204,8 @@ layers configuration."
    web-mode-css-indent-offset 2
    web-mode-code-indent-offset 2
    web-mode-attr-indent-offset 2)
+  ;; vcs settings
+  (setq vc-follow-symlinks nil)
 )
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
