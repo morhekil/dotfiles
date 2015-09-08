@@ -3,10 +3,12 @@
     bundler
     company
     ruby-mode
+    minitest
     flycheck
     robe
     ruby-test-mode
     ruby-tools
+    rvm
     yaml-mode))
 
 (when ruby-version-manager
@@ -169,6 +171,12 @@
 (defun ruby-min/init-haml-mode ()
   (use-package haml-mode
     :defer t))
+
+(defun ruby-min/init-minitest ()
+  (use-package minitest
+    :defer t
+    :config
+    (setq minitest-use-bundler nil)))
 
 (defun ruby-min/init-ruby-test-mode ()
   "Define keybindings for ruby test mode"
