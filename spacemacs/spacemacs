@@ -204,6 +204,7 @@ layers configuration."
    web-mode-css-indent-offset 2
    web-mode-code-indent-offset 2
    web-mode-attr-indent-offset 2)
+  (add-to-list 'auto-mode-alist '("\\.liquid\\'" . web-mode))
   ;; vcs settings
   (setq vc-follow-symlinks nil)
 )
