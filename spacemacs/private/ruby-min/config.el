@@ -1,6 +1,6 @@
 (spacemacs|defvar-company-backends ruby-mode)
 
-(defvar ruby-version-manager "rvm"
+(defvar ruby-version-manager 'rvm
   "If non nil defines the Ruby version manager (i.e. rbenv, rvm)")
 
 (defvar ruby-enable-ruby-on-rails-support t
