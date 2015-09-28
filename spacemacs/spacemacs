@@ -25,6 +25,7 @@
      syntax-checking
      go
      ruby-min
+     ruby-min-rails
      html
      restclient
      javascript
