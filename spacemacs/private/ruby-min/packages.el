@@ -51,7 +51,9 @@
                        :suffix "")))))
 
 (defun ruby-min/post-init-flycheck ()
-  (add-hook 'ruby-mode-hook 'flycheck-mode))
+  (progn
+    (add-hook 'ruby-mode-hook 'flycheck-mode)
+    (setq-default flycheck-disabled-checkers '(ruby-rubylint))))
 
 (defun ruby-min/init-ruby-tools ()
   (use-package ruby-tools
