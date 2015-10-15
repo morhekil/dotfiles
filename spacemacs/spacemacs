@@ -40,6 +40,7 @@
      react
      osxhacks
      clojure
+     haskell
      yaml
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
@@ -48,6 +49,9 @@
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
    dotspacemacs-delete-orphan-packages t))
+
+(defun dotspacemacs/user-init ()
+  (add-to-list 'exec-path "~/.cabal/bin/"))
 
 (defun dotspacemacs/init ()
   "Initialization function.
