@@ -8,8 +8,7 @@
     robe
     ruby-test-mode
     ruby-tools
-    rvm
-    yaml-mode))
+    rvm))
 
 (when ruby-version-manager
   (add-to-list 'ruby-min-packages ruby-version-manager))
@@ -159,11 +158,7 @@
 (defun ruby-min/init-yaml-mode ()
   "Initialize YAML mode"
   (use-package yaml-mode
-    :mode (("\\.\\(yml\\|yaml\\)\\'" . yaml-mode)
-           ("Procfile\\'" . yaml-mode))
-    :config (add-hook 'yaml-mode-hook
-                      '(lambda ()
-                         (define-key yaml-mode-map "\C-m" 'newline-and-indent)))))
+    :mode (("Procfile\\'" . yaml-mode))))
 
 (defun ruby-min/init-feature-mode ()
   "Initialize Cucumber feature mode"
