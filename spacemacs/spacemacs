@@ -211,7 +211,14 @@ layers configuration."
   (add-to-list 'auto-mode-alist '("\\.liquid\\'" . web-mode))
   ;; vcs settings
   (setq vc-follow-symlinks nil)
+
+  ;; haskell config
+  (setq-default dotspacemacs-configuration-layers
+   '(
+     (haskell :variables haskell-enable-shm-support t)
+     (haskell :variables haskell-enable-hindent-style "gibiansky")))
 )
+
 ;; Do not write anything past this comment. This is where Emacs will
 ;; auto-generate custom variable definitions.
 (custom-set-variables
