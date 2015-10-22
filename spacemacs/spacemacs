@@ -211,6 +211,8 @@ layers configuration."
   (add-to-list 'auto-mode-alist '("\\.liquid\\'" . web-mode))
   ;; vcs settings
   (setq vc-follow-symlinks nil)
+  ;; disable directory matching by ido
+  (setq ido-auto-merge-work-directories-length -1)
 
   ;; haskell config
   (setq-default dotspacemacs-configuration-layers
