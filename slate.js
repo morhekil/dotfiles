@@ -1,5 +1,5 @@
 var hyper = "ctrl;shift;alt;cmd";
-var focus_iterm = slate.operation("focus", { app: "iTerm" });
+var focus_iterm = slate.operation("focus", { app: "iTerm2" });
 var focus_chrome = slate.operation("focus", { app: "Google Chrome" });
 
 slate.bind("a:"+hyper, function(win) {

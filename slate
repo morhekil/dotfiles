@@ -11,7 +11,7 @@ alias full move screenOriginX;screenOriginY screenSizeX;screenSizeY
 bind k:${hyper} hint adsfzxcvqwer
 bind x:cmd;alt;ctrl ${full}
 
-bind f:${hyper} focus "iTerm"
+bind f:${hyper} focus "iTerm2"
 bind c:${hyper} focus "Google Chrome"
 bind e:${hyper} focus "Emacs"
 bind d:${hyper} focus "Postbox"
@@ -19,3 +19,4 @@ bind a:${hyper} focus "Adium"
 bind s:${hyper} focus "Skype"
 bind q:${hyper} focus "Sequel Pro"
 bind v:${hyper} focus "Slack"
+bind w:${hyper} focus "MoneyWell"
