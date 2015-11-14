@@ -42,6 +42,7 @@
      clojure
      haskell
      yaml
+     deft
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
    dotspacemacs-excluded-packages '()
@@ -219,6 +220,10 @@ layers configuration."
    '(
      (haskell :variables haskell-enable-shm-support t)
      (haskell :variables haskell-enable-hindent-style "gibiansky")))
+
+  ;; deft notes location
+  (setq deft-directory "~/Dropbox/Notes")
+  (setq deft-use-filename-as-title t)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
