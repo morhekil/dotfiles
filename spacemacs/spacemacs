@@ -24,15 +24,14 @@
      org
      syntax-checking
      go
-     ruby-min
-     ruby-min-rails
+     ruby
+     ruby-on-rails
      html
      restclient
      javascript
      lua
      (git :variables
           git-magit-status-fullscreen t)
-     puppet
      ansible
      dockerfile
      emacs-lisp
@@ -43,9 +42,16 @@
      haskell
      yaml
      deft
+
+     ;; haskell config
+     (haskell :variables haskell-enable-shm-support t)
+     (haskell :variables haskell-enable-hindent-style "gibiansky")
+     ;; ruby config
+     (ruby :variables ruby-version-manager 'rvm)
+     (ruby :variables ruby-test-runner 'rspec)
      )
    ;; A list of packages and/or extensions that will not be install and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(ruby-rubylint)
    ;; If non-nil spacemacs will delete any orphan packages, i.e. packages that
    ;; are declared in a layer which is not a member of
    ;; the list `dotspacemacs-configuration-layers'
@@ -58,6 +64,7 @@
   "Initialization function.
 This function is called at the very startup of Spacemacs initialization
 before layers configuration."
+
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
@@ -164,12 +171,14 @@ before layers configuration."
   ;; disable smartparens highlighting
   (setq sp-highlight-pair-overlay nil)
   (setq sp-highlight-wrap-overlay nil)
+
   (setq sp-highlight-wrap-tag-overlay nil))
 
 (defun dotspacemacs/config ()
   "Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
+  (setq-default flycheck-disabled-checkers '(ruby-rubylint))
   (global-hl-line-mode -1) ; Disable current line highlight
   (setq powerline-default-separator 'arrow)
   ;; highlight long lines
@@ -196,8 +205,6 @@ layers configuration."
   (custom-set-faces
     '(font-lock-constant-face ((t (:foreground "#cb4b16" :weight unspecified)))))
 
-  (setq ruby-version-manager "rvm")
-  (setq ruby-enable-ruby-on-rails-support t)
   ;; js customisations
   (setq-default js2-basic-offset 2)
   (setq javascript-indent-level 2)
@@ -214,12 +221,6 @@ layers configuration."
   (setq vc-follow-symlinks nil)
   ;; disable directory matching by ido
   (setq ido-auto-merge-work-directories-length -1)
-
-  ;; haskell config
-  (setq-default dotspacemacs-configuration-layers
-   '(
-     (haskell :variables haskell-enable-shm-support t)
-     (haskell :variables haskell-enable-hindent-style "gibiansky")))
 
   ;; deft notes location
   (setq deft-directory "~/Dropbox/Notes")
