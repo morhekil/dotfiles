@@ -3,7 +3,7 @@
   excludesfile = ~/.gitignore
 [user]
 	name = Oleg Ivanov
-	email = morhekil@morhekil.net
+	email = oleg.ivanov@jnsolutions.com.au
 [color]
   ui = true
 [alias]
