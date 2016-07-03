@@ -18,10 +18,15 @@ end)
 
 hs.hotkey.bind(hyper, "F", function()
   hs.application.launchOrFocus("iTerm")
+  hs.application.launchOrFocus("iTerm")
 end)
 
 hs.hotkey.bind(hyper, "W", function()
   hs.application.launchOrFocus("MoneyWell")
+end)
+
+hs.hotkey.bind(hyper, "V", function()
+  hs.application.launchOrFocus("Preview")
 end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "X", function()
