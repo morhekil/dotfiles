@@ -1,4 +1,4 @@
-(when (system-is-mac)
+(when (spacemacs/system-is-mac)
   (progn
     (evil-leader/set-key "bf" 'reveal-in-finder)
     (evil-leader/set-key "oy" 'pasteboard-copy)
