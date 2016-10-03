@@ -8,6 +8,7 @@
 --type-set=cucumber=.feature
 --type-add=vim=.vim
 --type-add=php=.tpl
---type-set=DUMB=.log
+--type-set=DUMB=.log,.map
 --noDUMB
+--ignore-dir=node_modules
 
