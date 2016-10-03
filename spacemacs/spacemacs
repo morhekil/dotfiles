@@ -21,7 +21,7 @@
      (git :variables
           git-gutter-use-fringe t)
      markdown
-     org
+     (org :variables org-enable-github-support t)
      syntax-checking
      go
      ruby
