@@ -191,6 +191,7 @@ layers configuration."
   (setq gofmt-command "goimports")
   (setenv "GOPATH" "/Users/Saruman/go")
   (add-hook 'before-save-hook 'gofmt-before-save)
+  (remove-hook 'go-mode-hook 'whitespace-mode)
   ;; line numbers
   (setq linum-format "%3d ")
   ;; ido and fuzzy match tuning
