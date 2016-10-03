@@ -42,6 +42,8 @@
      haskell
      yaml
      deft
+     elm
+     terraform
 
      ;; haskell config
      (haskell :variables haskell-enable-shm-support t)
