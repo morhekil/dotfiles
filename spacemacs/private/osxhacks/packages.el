@@ -1,6 +1,6 @@
 (setq osxhacks-packages
   '(
-    reveal-in-finder
+  ;;   reveal-in-finder
     ))
 
 (if (and (spacemacs/system-is-mac) (executable-find "gls")) 
@@ -10,8 +10,8 @@
     (setq insert-directory-program "gls"
           dired-listing-switches "-aBhl --group-directories-first"))
 
-(defun osxhacks/init-reveal-in-finder ()
-  (use-package reveal-in-finder
-    :if (spacemacs/system-is-mac)
-    :commands reveal-in-finder))
+;; (defun osxhacks/init-reveal-in-finder ()
+;;   (use-package reveal-in-finder
+;;     :if (spacemacs/system-is-mac)
+;;     :commands reveal-in-finder))
 
