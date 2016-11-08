@@ -33,7 +33,6 @@
      (git :variables
           git-magit-status-fullscreen t)
      ansible
-     dockerfile
      emacs-lisp
      shell
      react
@@ -44,7 +43,6 @@
      deft
      elm
      terraform
-     ivy
 
      ;; haskell config
      (haskell :variables haskell-enable-shm-support t)
@@ -174,8 +172,34 @@ before layers configuration."
   ;; disable smartparens highlighting
   (setq sp-highlight-pair-overlay nil)
   (setq sp-highlight-wrap-overlay nil)
-
   (setq sp-highlight-wrap-tag-overlay nil))
+  (setq scroll-margin 15)
+
+  ;; indentation config
+  (setq
+   json-reformat:indent-width 2
+   javascript-indent-level 2
+   js-indent-level 2
+   json-indent-level 2
+   standard-indent 2
+   js2-basic-offset 2
+   clean-aindent-mode t
+   indent-guide-delay 0.3
+   indent-tabs-mode nil
+   js-indent-level 2
+   json-reformat:indent-width 2
+   standard-indent 2
+   css-indent-offset 2
+   web-mode-standard-indent 2
+   web-mode-code-indent-offset 2
+   web-mode-indent-style 2
+   web-mode-markup-indent-offset 2
+   web-mode-css-indent-offset 2
+   web-mode-attr-indent-offset 2
+   web-mode-code-indent-offset 2
+   web-mode-css-indent-offset 2)
+  (setq whitespace-style '(face empty tabs lines-tail trailing))
+  (setq whitespace-action '(auto-cleanup))
 
 (defun dotspacemacs/config ()
   "Configuration function.
@@ -183,18 +207,13 @@ before layers configuration."
 layers configuration."
   (setq-default flycheck-disabled-checkers '(ruby-rubylint))
   (global-hl-line-mode -1) ; Disable current line highlight
-  (setq powerline-default-separator 'arrow)
   ;; highlight long lines
-  (setq whitespace-style '(face empty tabs lines-tail trailing))
   (global-whitespace-mode t)
-  (setq whitespace-action '(auto-cleanup))
   ;; go-mode setup
   (setq gofmt-command "goimports")
   (setenv "GOPATH" "/Users/Saruman/go")
   (add-hook 'before-save-hook 'gofmt-before-save)
   (remove-hook 'go-mode-hook 'whitespace-mode)
-  ;; line numbers
-  (setq linum-format "%3d ")
   ;; ido and fuzzy match tuning
   (ido-everywhere t)
   ;; start server on launch
@@ -209,17 +228,6 @@ layers configuration."
   (custom-set-faces
     '(font-lock-constant-face ((t (:foreground "#cb4b16" :weight unspecified)))))
 
-  ;; js customisations
-  (setq-default js2-basic-offset 2)
-  (setq javascript-indent-level 2)
-  (setq js-indent-level 2)
-  ;; web-mode
-  (setq-default
-   css-indent-offset 2
-   web-mode-markup-indent-offset 2
-   web-mode-css-indent-offset 2
-   web-mode-code-indent-offset 2
-   web-mode-attr-indent-offset 2)
   (add-to-list 'auto-mode-alist '("\\.liquid\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.es6\\'" . react-mode))
@@ -232,29 +240,3 @@ layers configuration."
   (setq deft-directory "~/Dropbox/Notes")
   (setq deft-use-filename-as-title t)
 )
-
-;; Do not write anything past this comment. This is where Emacs will
-;; auto-generate custom variable definitions.
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(ahs-case-fold-search nil)
- '(ahs-default-range (quote ahs-range-whole-buffer))
- '(ahs-idle-interval 0.25)
- '(ahs-idle-timer 0 t)
- '(ahs-inhibit-face-list nil)
- '(expand-region-contract-fast-key "V")
- '(expand-region-reset-fast-key "r")
- '(magit-use-overlays nil)
- '(paradox-github-token t)
- '(ring-bell-function (quote ignore) t))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(company-tooltip-common ((t (:inherit company-tooltip :weight bold :underline nil))))
- '(company-tooltip-common-selection ((t (:inherit company-tooltip-selection :weight bold :underline nil))))
- '(font-lock-constant-face ((t (:foreground "#cb4b16" :weight unspecified)))))
