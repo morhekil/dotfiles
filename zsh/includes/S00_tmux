@@ -1,15 +1,25 @@
 # Autocomplete from current tmux screen buffer
 _tmux_pane_words() {
   local expl
-  local -a w
-  if [[ -z "$TMUX_PANE" ]]; then
-    _message "not running inside tmux!"
-    return 1
-  fi
-  w=( ${(u)=$(tmux capture-pane \; show-buffer \; delete-buffer)} )
-  _wanted values expl 'words from current tmux pane' compadd -a w
+    local -a w
+    if [[ -z "$TMUX_PANE" ]]; then
+      _message "not running inside tmux!"
+        return 1
+        fi
+        w=( ${(u)=$(tmux capture-pane \; show-buffer \; delete-buffer)} )
+        _wanted values expl 'words from current tmux pane' compadd -a w
 }
- 
+
+ssh() {
+  if [ "$(ps -p $(ps -p $$ -o ppid=) -o comm=)" = "tmux" ]; then
+    tmux rename-window "$(echo $* | cut -d . -f 1)"
+      command ssh "$@"
+      tmux set-window-option automatic-rename "on" 1>/dev/null
+  else
+    command ssh "$@"
+      fi
+}
+
 zle -C tmux-pane-words-prefix   complete-word _generic
 zle -C tmux-pane-words-anywhere complete-word _generic
 bindkey '^P^O' tmux-pane-words-prefix
