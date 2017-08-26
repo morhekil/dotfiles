@@ -1,9 +1,9 @@
 [core]
   pager =
-  excludesfile = ~/.gitignore
+	excludesfile = ~/.gitignore
 [user]
 	name = Oleg Ivanov
-	email = oleg.ivanov@jnsolutions.com.au
+	email = morhekil@morhekil.net
 [color]
   ui = true
 [alias]
