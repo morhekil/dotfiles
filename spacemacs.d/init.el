@@ -28,14 +28,13 @@
      ruby-on-rails
      html
      restclient
-     javascript
+     mhl-javascript
      lua
      (git :variables
           git-magit-status-fullscreen t)
      ansible
      emacs-lisp
      shell
-     react
      osxhacks
      clojure
      haskell
@@ -45,6 +44,7 @@
      terraform
      nginx
      csv
+     ivy
 
      ;; haskell config
      (haskell :variables haskell-enable-shm-support t)
@@ -229,7 +229,10 @@ layers configuration."
     "Kill all buffers."
     (interactive)
     (mapc 'kill-buffer (buffer-list)))
-  (evil-leader/set-key "ob" 'kill-all-buffers)
+  (spacemacs/set-leader-keys "o b" 'kill-all-buffers)
+  ;; always use flycheck based error navigation
+  (spacemacs/set-leader-keys "e n" 'flycheck-next-error)
+  (spacemacs/set-leader-keys "e p" 'flycheck-previous-error)
   ;; customize solarize's color selection
   (custom-set-faces
     '(font-lock-constant-face ((t (:foreground "#cb4b16" :weight unspecified)))))
@@ -245,6 +248,7 @@ layers configuration."
   ;; deft notes location
   (setq deft-directory "~/Dropbox/Notes")
   (setq deft-use-filename-as-title t)
+
 )
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
@@ -260,3 +264,27 @@ layers configuration."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+(defun dotspacemacs/emacs-custom-settings ()
+  "Emacs custom settings.
+This is an auto-generated function, do not modify its content directly, use
+Emacs customize menu instead.
+This function is called at the very end of Spacemacs initialization."
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   (quote
+    (flycheck-flow company-flow org-brain evil-org zenburn-theme symon string-inflection sayid ruby-refactor password-generator org-category-capture monokai-theme window-purpose imenu-list impatient-mode godoctor go-rename evil-lion editorconfig dante company-lua dash wgrep smex ivy-purpose ivy-hydra counsel-projectile counsel swiper ivy rjsx-mode eslintd-fix helm-purpose winum unfill restclient-helm ob-restclient fuzzy company-restclient know-your-http-well company-ansible csv-mode vmd-mode hcl-mode powerline rake pcre2el org alert log4e gntp markdown-mode skewer-mode simple-httpd json-snatcher json-reformat js2-mode parent-mode projectile request haml-mode gitignore-mode pos-tip flycheck flx magit magit-popup git-commit with-editor smartparens iedit anzu evil goto-chg undo-tree diminish web-completion-data dash-functional tern go-mode ghc haskell-mode company hydra inflections edn multiple-cursors paredit peg eval-sexp-fu highlight cider seq spinner queue pkg-info clojure-mode epl inf-ruby bind-map bind-key yasnippet packed f s helm avy helm-core async auto-complete popup package-build nginx-mode yapfify pyvenv pytest pyenv-mode py-isort pip-requirements live-py-mode hy-mode helm-pydoc cython-mode company-anaconda anaconda-mode pythonic yaml-mode xterm-color ws-butler window-numbering which-key web-mode web-beautify volatile-highlights vi-tilde-fringe uuidgen use-package toc-org terraform-mode tagedit spacemacs-theme spaceline solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode rvm ruby-tools ruby-test-mode rubocop rspec-mode robe restclient restart-emacs rbenv rainbow-delimiters quelpa pug-mode projectile-rails popwin persp-mode paradox ox-gfm orgit org-projectile org-present org-pomodoro org-plus-contrib org-download org-bullets open-junk-file ob-http neotree mwim multi-term move-text mmm-mode minitest markdown-toc magit-gitflow macrostep lua-mode lorem-ipsum livid-mode linum-relative link-hint less-css-mode json-mode js2-refactor js-doc jinja2-mode intero info+ indent-guide ido-vertical-mode hungry-delete htmlize hlint-refactor hl-todo hindent highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-themes helm-swoop helm-projectile helm-mode-manager helm-make helm-hoogle helm-gitignore helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag haskell-snippets google-translate golden-ratio go-guru go-eldoc gnuplot gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md flycheck-pos-tip flycheck-haskell flycheck-elm flx-ido fill-column-indicator feature-mode fancy-battery eyebrowse expand-region exec-path-from-shell evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-surround evil-search-highlight-persist evil-numbers evil-nerd-commenter evil-mc evil-matchit evil-magit evil-lisp-state evil-indent-plus evil-iedit-state evil-exchange evil-escape evil-ediff evil-args evil-anzu eshell-z eshell-prompt-extras esh-help emmet-mode elm-mode elisp-slime-nav dumb-jump deft define-word company-web company-tern company-statistics company-go company-ghci company-ghc company-cabal column-enforce-mode coffee-mode cmm-mode clojure-snippets clj-refactor clean-aindent-mode cider-eval-sexp-fu chruby bundler auto-yasnippet auto-highlight-symbol auto-compile ansible-doc ansible aggressive-indent adaptive-wrap ace-window ace-link ace-jump-helm-line ac-ispell))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+)
+
+(defun spacemacs/error-delegate ()
+  "Override spacemacs error-delegate to always default to flycheck"
+  'flycheck)
