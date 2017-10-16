@@ -103,8 +103,8 @@ before layers configuration."
    dotspacemacs-colorize-cursor-according-to-state t
    ;; Default font. `powerline-scale' allows to quickly tweak the mode-line
    ;; size to make separators look not too crappy.
-   dotspacemacs-default-font '("Meslo LG S"
-                               :size 11
+   dotspacemacs-default-font '("Iosevka"
+                               :size 12
                                :weight normal
                                :width normal
                                :powerline-scale 1.1)
@@ -177,7 +177,7 @@ before layers configuration."
   ;; disable smartparens highlighting
   (setq sp-highlight-pair-overlay nil)
   (setq sp-highlight-wrap-overlay nil)
-  (setq sp-highlight-wrap-tag-overlay nil))
+  (setq sp-highlight-wrap-tag-overlay nil)
   (setq scroll-margin 15)
 
   ;; indentation config
@@ -205,8 +205,12 @@ before layers configuration."
    web-mode-css-indent-offset 2)
   (setq whitespace-style '(face empty tabs lines-tail trailing))
   (setq whitespace-action '(auto-cleanup))
-  ;; go config
-  (setq gofmt-command "goimports")
+
+  ;; automatically scale font when window size changed
+  (defun mhl-font-scale-on-frame-width ()
+    (if (> (frame-width) 200) (text-scale-set 0.5) (text-scale-set 0)))
+  (add-hook 'window-configuration-change-hook 'mhl-font-scale-on-frame-width)
+)
 
 (defun dotspacemacs/config ()
   "Configuration function.
@@ -220,6 +224,7 @@ layers configuration."
   (setenv "GOPATH" "/Users/Saruman/go")
   (add-hook 'before-save-hook 'gofmt-before-save)
   (remove-hook 'go-mode-hook 'whitespace-mode)
+  (setq gofmt-command "goimports")
   ;; ido and fuzzy match tuning
   (ido-everywhere t)
   ;; start server on launch
@@ -239,7 +244,7 @@ layers configuration."
 
   (add-to-list 'auto-mode-alist '("\\.liquid\\'" . web-mode))
   (add-to-list 'auto-mode-alist '("\\.vue\\'" . web-mode))
-  (add-to-list 'auto-mode-alist '("\\.es6\\'" . react-mode))
+  (add-to-list 'auto-mode-alist '("\\.es6\\'" . rjsx-mode))
   ;; vcs settings
   (setq vc-follow-symlinks nil)
   ;; disable directory matching by ido
@@ -248,8 +253,8 @@ layers configuration."
   ;; deft notes location
   (setq deft-directory "~/Dropbox/Notes")
   (setq deft-use-filename-as-title t)
-
 )
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
