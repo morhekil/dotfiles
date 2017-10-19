@@ -212,32 +212,22 @@ before layers configuration."
   (add-hook 'window-configuration-change-hook 'mhl-font-scale-on-frame-width)
 )
 
-(defun dotspacemacs/config ()
-  "Configuration function.
+(defun dotspacemacs/user-config ()
+  "User Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-  (setq-default flycheck-disabled-checkers '(ruby-rubylint))
-  (global-hl-line-mode -1) ; Disable current line highlight
-  ;; highlight long lines
-  (global-whitespace-mode t)
+  ;; (setq-default flycheck-disabled-checkers '(ruby-rubylint))
+  ;; highlight long lines and extra spaces
+  ;; (global-whitespace-mode t)
+  ;; (remove-hook 'go-mode-hook 'whitespace-mode)
+
   ;; go-mode setup
   (setenv "GOPATH" "/Users/Saruman/go")
-  (add-hook 'before-save-hook 'gofmt-before-save)
-  (remove-hook 'go-mode-hook 'whitespace-mode)
+  ;; (add-hook 'before-save-hook 'gofmt-before-save)
   (setq gofmt-command "goimports")
-  ;; ido and fuzzy match tuning
-  (ido-everywhere t)
+  (setq go-use-gometalinter t)
   ;; start server on launch
   (server-start)
-  ;; kill all buffers
-  (defun kill-all-buffers ()
-    "Kill all buffers."
-    (interactive)
-    (mapc 'kill-buffer (buffer-list)))
-  (spacemacs/set-leader-keys "o b" 'kill-all-buffers)
-  ;; always use flycheck based error navigation
-  (spacemacs/set-leader-keys "e n" 'flycheck-next-error)
-  (spacemacs/set-leader-keys "e p" 'flycheck-previous-error)
   ;; customize solarize's color selection
   (custom-set-faces
     '(font-lock-constant-face ((t (:foreground "#cb4b16" :weight unspecified)))))
@@ -247,8 +237,6 @@ layers configuration."
   (add-to-list 'auto-mode-alist '("\\.es6\\'" . rjsx-mode))
   ;; vcs settings
   (setq vc-follow-symlinks nil)
-  ;; disable directory matching by ido
-  (setq ido-auto-merge-work-directories-length -1)
 
   ;; deft notes location
   (setq deft-directory "~/Dropbox/Notes")
