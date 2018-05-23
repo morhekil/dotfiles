@@ -6,7 +6,7 @@ hs.hotkey.bind(hyper, "Q", function()
 end)
 
 hs.hotkey.bind(hyper, "D", function()
-  hs.application.launchOrFocus("Postbox")
+  hs.application.launchOrFocus("MailMate")
 end)
 
 hs.hotkey.bind(hyper, "C", function()
@@ -287,7 +287,7 @@ function sizeup.win()
 end
 -- display title, save state and move win to unit
 function sizeup.set_frame(title, unit)
-  hs.alert.show(title)
+  -- hs.alert.show(title)
   local win = sizeup.win()
   sizeup.snapback_window_state[win:id()] = win:frame()
   return win:setFrame(unit)
