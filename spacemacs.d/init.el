@@ -44,7 +44,7 @@
      terraform
      nginx
      csv
-     ivy
+     ;; ivy
 
      ;; haskell config
      (haskell :variables haskell-enable-shm-support t)
@@ -216,7 +216,7 @@ before layers configuration."
   "User Configuration function.
  This function is called at the very end of Spacemacs initialization after
 layers configuration."
-  ;; (setq-default flycheck-disabled-checkers '(ruby-rubylint))
+  (setq-default flycheck-disabled-checkers '(ruby-reek))
   ;; highlight long lines and extra spaces
   ;; (global-whitespace-mode t)
   ;; (remove-hook 'go-mode-hook 'whitespace-mode)
