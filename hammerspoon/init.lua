@@ -1,8 +1,11 @@
 local sizeup = { }
 local hyper = {"cmd", "alt", "ctrl", "shift"}
 
+hs.application.enableSpotlightForNameSearches(true)
+
 hs.hotkey.bind(hyper, "Q", function()
-  hs.application.launchOrFocus("Sequel Pro")
+  -- hs.application.launchOrFocus("Sequel Pro")
+  hs.application.launchOrFocus("TablePlus")
 end)
 
 hs.hotkey.bind(hyper, "D", function()
@@ -14,6 +17,7 @@ hs.hotkey.bind(hyper, "C", function()
 end)
 
 hs.hotkey.bind(hyper, "E", function()
+  -- hs.application.launchOrFocus("/usr/local/Cellar/emacs-mac/emacs-26.1-z-mac-7.1/Emacs.app")
   hs.application.launchOrFocus("Emacs")
 end)
 
@@ -22,16 +26,8 @@ hs.hotkey.bind(hyper, "F", function()
   hs.application.launchOrFocus("iTerm")
 end)
 
-hs.hotkey.bind(hyper, "W", function()
-  hs.application.launchOrFocus("MoneyWell")
-end)
-
-hs.hotkey.bind(hyper, "V", function()
-  hs.application.launchOrFocus("Preview")
-end)
-
 hs.hotkey.bind(hyper, "S", function()
-  hs.application.launchOrFocus("Safari")
+  hs.application.launchOrFocus("Slack")
 end)
 
 hs.hotkey.bind({"cmd", "alt", "ctrl"}, "X", function()
