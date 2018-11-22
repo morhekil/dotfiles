@@ -18,3 +18,6 @@
 [mergetool]
 	keepBackup = true
   tool = vimdiff
+
+[url "ssh://git@github.com/redstarnv/"]
+  insteadOf = https://github.com/redstarnv/
