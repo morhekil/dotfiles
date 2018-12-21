@@ -24,3 +24,6 @@
 
 [url "ssh://git@gitlab.com/"]
   insteadOf = https://gitlab.com/
+
+[diff "ansible-vault"]
+      textconv = "ansible-vault view"
