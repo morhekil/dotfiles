@@ -110,13 +110,6 @@ if [ -f ${HOME}/.zshrc.local ]; then
   source "${HOME}/.zshrc.local"
 fi
 
-# if we're launching zsh in a dir with .rvmrc - then cd out of it, and then back
-# in, to reinitialize rvm
-if [ -f .rvmrc ] || [ -f .ruby-version ] || [ -f .ruby-gemset ]; then
-  old_dir=`pwd`
-  cd .. && cd $old_dir
-fi
-
 # Emacs
 # alias e='TERM=xterm emacs -nw'
 alias e='emacsclient -n'
@@ -129,8 +122,3 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # direnv hook
 eval "$(direnv hook $0)"
-
-# RVM at the very end
-[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
-
-export PATH="$PATH:$HOME/.rvm/bin" # Add RVM to PATH for scripting

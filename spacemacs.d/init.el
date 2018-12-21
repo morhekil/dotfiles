@@ -50,7 +50,7 @@
      (haskell :variables haskell-enable-shm-support t)
      (haskell :variables haskell-enable-hindent-style "gibiansky")
      ;; ruby config
-     (ruby :variables ruby-version-manager 'rvm)
+     (ruby :variables ruby-version-manager 'rbenv)
      (ruby :variables ruby-test-runner 'rspec)
 
      ;; markdown config
