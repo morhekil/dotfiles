@@ -4,7 +4,9 @@ declare -A dotpaths
 
 dotfiles=("ackrc aprc aria2/aria2.conf gitconfig lftprc pryrc tmux.conf vim vimrc zsh zshrc /bin/sack /bin/sag /bin/sgrep sackrc percol.d spacemacs.d hammerspoon")
 dotpaths[zshrc]="zsh/zshrc"
-dotpaths[vimrc]="vim/vimrc"
+dotpaths[".config/nvim"]="nvim"
+dotpaths[".vim"]="nvim"
+dotpaths[vimrc]="nvim/init.vim"
 dotpaths[gitconfig]="git/gitconfig"
 dotpaths["aria2/aria2.conf"]="aria2.conf"
 dotpaths["/bin/sack"]="sack/sack"

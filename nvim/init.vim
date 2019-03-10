@@ -39,7 +39,7 @@ set hlsearch
 let g:ri_vim_tool = 'ri_vim '
 nnoremap <Leader>di :call ri#OpenSearchPrompt(0)<CR> " horizontal split
 nnoremap <Leader>dI :call ri#OpenSearchPrompt(1)<CR> " vertical split
-nnoremap <Leader>dK :call ri#LookupNameUnderCursor()<CR> " keyword lookup 
+nnoremap <Leader>dK :call ri#LookupNameUnderCursor()<CR> " keyword lookup
 
 " This is totally awesome - remap jj to escape in insert mode.  You'll never type jj anyway, so it's great!
 inoremap jj <Esc>
@@ -76,7 +76,7 @@ set smartcase
 
 "Status line gnarliness
 set laststatus=2
-set statusline=%f\ %m%r%h%w\ (%{&ff}){%Y}\ [%l,%v]\ %{fugitive#statusline()}
+set statusline=%f\ %m%r%h%w\ (%{&ff}){%Y}\ [%l,%v]
 
 " Highlighting the current line
 set cursorline
@@ -84,9 +84,6 @@ set cursorline
 set scrolloff=7
 " Don't move cursor to the start of the line on G and similar movements
 set nostartofline
-
-" Hiding Fugitive's buffers
-autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " Mapping <C-W>d to deleting the buffer, but keeping current layout
 map <silent> <C-W>d :BD<CR>
@@ -138,36 +135,11 @@ let g:solarized_bold=1
 set background=light
 colorscheme solarized
 
-" Vroom setup
-let g:vroom_use_colors=1
-let g:vroom_clear_screen=0
-let g:vroom_use_vimux=1
-let g:vroom_use_binstubs=1
-let g:vroom_use_bundle_exec=0
-let g:vroom_spec_command='rspec '
-" let g:vroom_spec_command='spec '
-let g:vroom_rspec_version='1.x'
-let g:vroom_use_colors=0
-
-" Setup the proper shell - we prefer rvm-shell, then zsh
-if executable('rvm-shell')
-  set shell=rvm-shell
-elseif executable('zsh')
-  set shell=zsh
-end
+" zsh is our shell
+set shell=zsh
 
 " Folding settings
 set foldmethod=manual
-" autocmd Syntax c,cpp,vim,xml,html,xhtml,perl,javaScript,ruby,sh,vimsyn normal zR
-
-" let javaScript_fold=1         " JavaScript
-" let perl_fold=1               " Perl
-" let php_folding=1             " PHP
-" let r_syntax_folding=1        " R
-" let ruby_fold=1               " Ruby
-" let sh_fold_enabled=1         " sh
-" let vimsyn_folding='af'       " Vim script
-" let xml_syntax_folding=1      " XML
 
 " Disable arrow keys
 inoremap  <Up>     <NOP>
@@ -180,28 +152,11 @@ noremap   <Left>   <NOP>
 noremap   <Right>  <NOP>
 
 " Enable matchit
-runtime macros/matchit.vim    
+runtime macros/matchit.vim
 
 " EasyMotion's colors Solarized-friendly
 hi link EasyMotionTarget ErrorMsg
 hi link EasyMotionShade  Comment
-
-" Syntastic setup
-let g:syntastic_echo_current_error=1
-let g:syntastic_enable_signs=1
-let g:syntastic_enable_highlighting=1
-let g:syntastic_auto_loc_list=1
-let g:syntastic_mode_map = { 'mode': 'active',
-                           \ 'passive_filetypes': ['sass', 'html', 'scss']
-                           \ }
-let g:syntastic_ruby_exec = "ruby"
-let g:syntastic_ruby_checkers = ['mri', 'rubocop']
-
-" Emmet setup
-let g:user_emmet_leader_key='<C-a>'
-
-" NERDTree on \t
-nmap \t :NERDTreeToggle<CR>
 
 " FuzzyFinder's mappings
 map <Leader>ff :FufCoverageFile<CR>
@@ -223,19 +178,6 @@ map <leader>e :edit %%
 map <leader>v :view %%
 map <c-p><c-p> :CtrlP %%<CR>
 
-" Automatically save and load views
-set viewoptions-=options
-augroup vimrc
-    autocmd BufWritePost *
-    \   if expand('%') != '' && &buftype !~ 'nofile'
-    \|      mkview
-    \|  endif
-    autocmd BufRead *
-    \   if expand('%') != '' && &buftype !~ 'nofile'
-    \|      silent loadview
-    \|  endif
-augroup END
-
 " Load local overrides file if exists
 if filereadable(expand('~')."/.vimrc.local")
   source ~/.vimrc.local
@@ -244,7 +186,6 @@ endif
 if filereadable("./.vimrc.dir")
   source ./.vimrc.dir
 endif
-
 
 " Ruby hash syntax converter
 function! s:ChangeHashSyntax(line1,line2)

@@ -1,120 +1,114 @@
-[submodule "vim/bundles/vim-colors-solarized"]
-	path = vim/bundle/vim-colors-solarized
+[submodule "nvim/bundles/vim-colors-solarized"]
+	path = nvim/bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
-[submodule "vim/bundles/vim-ruby"]
-	path = vim/bundle/vim-ruby
+[submodule "nvim/bundles/vim-ruby"]
+	path = nvim/bundle/vim-ruby
 	url = https://github.com/vim-ruby/vim-ruby.git
-[submodule "vim/bundle/vim-git"]
-	path = vim/bundle/vim-git
+[submodule "nvim/bundle/vim-git"]
+	path = nvim/bundle/vim-git
 	url = https://github.com/tpope/vim-git.git
-[submodule "vim/bundle/vim-fugitive"]
-	path = vim/bundle/vim-fugitive
+[submodule "nvim/bundle/vim-fugitive"]
+	path = nvim/bundle/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
-[submodule "vim/bundle/tabular"]
-	path = vim/bundle/tabular
+[submodule "nvim/bundle/tabular"]
+	path = nvim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
-[submodule "vim/bundle/vim-surround"]
-	path = vim/bundle/vim-surround
+[submodule "nvim/bundle/vim-surround"]
+	path = nvim/bundle/vim-surround
 	url = https://github.com/tpope/vim-surround.git
-[submodule "vim/bundle/textile.vim"]
-	path = vim/bundle/textile.vim
+[submodule "nvim/bundle/textile.vim"]
+	path = nvim/bundle/textile.vim
 	url = https://github.com/timcharper/textile.vim.git
-[submodule "vim/bundle/vim-javascript"]
-	path = vim/bundle/vim-javascript
+[submodule "nvim/bundle/vim-javascript"]
+	path = nvim/bundle/vim-javascript
 	url = https://github.com/pangloss/vim-javascript.git
-[submodule "vim/bundle/vim-haml"]
-	path = vim/bundle/vim-haml
+[submodule "nvim/bundle/vim-haml"]
+	path = nvim/bundle/vim-haml
 	url = https://github.com/tpope/vim-haml.git
-[submodule "vim/bundle/vim-coffee-script"]
-	path = vim/bundle/vim-coffee-script
+[submodule "nvim/bundle/vim-coffee-script"]
+	path = nvim/bundle/vim-coffee-script
 	url = https://github.com/kchmck/vim-coffee-script.git
-[submodule "vim/bundle/indent-object"]
-	path = vim/bundle/indent-object
+[submodule "nvim/bundle/indent-object"]
+	path = nvim/bundle/indent-object
 	url = https://github.com/michaeljsmith/vim-indent-object.git
-[submodule "vim/bundle/argtextobj"]
-	path = vim/bundle/argtextobj
+[submodule "nvim/bundle/argtextobj"]
+	path = nvim/bundle/argtextobj
 	url = https://github.com/vim-scripts/argtextobj.vim.git
-[submodule "vim/bundle/textobj-user"]
-	path = vim/bundle/textobj-user
+[submodule "nvim/bundle/textobj-user"]
+	path = nvim/bundle/textobj-user
 	url = https://github.com/kana/vim-textobj-user.git
-[submodule "vim/bundle/textobj-rubyblock"]
-	path = vim/bundle/textobj-rubyblock
+[submodule "nvim/bundle/textobj-rubyblock"]
+	path = nvim/bundle/textobj-rubyblock
 	url = https://github.com/nelstrom/vim-textobj-rubyblock.git
-[submodule "vim/bundle/pathogen"]
-	path = vim/bundle/pathogen
+[submodule "nvim/bundle/pathogen"]
+	path = nvim/bundle/pathogen
 	url = https://github.com/tpope/vim-pathogen.git
-[submodule "vim/bundle/ack"]
-	path = vim/bundle/ack
+[submodule "nvim/bundle/ack"]
+	path = nvim/bundle/ack
 	url = https://github.com/mileszs/ack.vim.git
-[submodule "vim/bundle/puppet"]
-	path = vim/bundle/puppet
+[submodule "nvim/bundle/puppet"]
+	path = nvim/bundle/puppet
 	url = https://github.com/puppetlabs/puppet-syntax-vim.git
-[submodule "vim/bundle/keepcase"]
-	path = vim/bundle/keepcase
+[submodule "nvim/bundle/keepcase"]
+	path = nvim/bundle/keepcase
 	url = https://github.com/vim-scripts/keepcase.vim
-[submodule "vim/bundle/syntastic"]
-	path = vim/bundle/syntastic
+[submodule "nvim/bundle/syntastic"]
+	path = nvim/bundle/syntastic
 	url = https://github.com/scrooloose/syntastic.git
-[submodule "vim/bundle/vim-easymotion"]
-	path = vim/bundle/vim-easymotion
+[submodule "nvim/bundle/vim-easymotion"]
+	path = nvim/bundle/vim-easymotion
 	url = https://github.com/Lokaltog/vim-easymotion.git
-[submodule "vim/bundle/vim-repeat"]
-	path = vim/bundle/vim-repeat
+[submodule "nvim/bundle/vim-repeat"]
+	path = nvim/bundle/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
-[submodule "vim/bundle/L9"]
-  path = vim/bundle/L9
+[submodule "nvim/bundle/L9"]
+  path = nvim/bundle/L9
   url = https://github.com/vim-scripts/L9.git
-[submodule "vim/bundle/vim-rails"]
-	path = vim/bundle/vim-rails
+[submodule "nvim/bundle/vim-rails"]
+	path = nvim/bundle/vim-rails
 	url = https://github.com/tpope/vim-rails.git
-[submodule "vim/bundle/ctrlp"]
-	path = vim/bundle/ctrlp
+[submodule "nvim/bundle/ctrlp"]
+	path = nvim/bundle/ctrlp
 	url = https://github.com/kien/ctrlp.vim.git
-[submodule "vim/bundle/html5"]
-	path = vim/bundle/html5
+[submodule "nvim/bundle/html5"]
+	path = nvim/bundle/html5
 	url = git://github.com/othree/html5.vim.git
-[submodule "vim/bundle/vimux"]
-	path = vim/bundle/vimux
+[submodule "nvim/bundle/vimux"]
+	path = nvim/bundle/vimux
 	url = git://github.com/benmills/vimux.git
-[submodule "vim/bundle/vim-vroom"]
-	path = vim/bundle/vim-vroom
+[submodule "nvim/bundle/vim-vroom"]
+	path = nvim/bundle/vim-vroom
 	url = git://github.com/skalnik/vim-vroom.git
-[submodule "vim/bundle/YouCompleteMe.git"]
-	path = vim/bundle/YouCompleteMe.git
+[submodule "nvim/bundle/YouCompleteMe.git"]
+	path = nvim/bundle/YouCompleteMe.git
 	url = git://github.com/Valloric/YouCompleteMe.git
-[submodule "vim/bundle/vim-commentary"]
-	path = vim/bundle/vim-commentary
+[submodule "nvim/bundle/vim-commentary"]
+	path = nvim/bundle/vim-commentary
 	url = git://github.com/tpope/vim-commentary.git
-[submodule "vim/bundle/nerdtree"]
-	path = vim/bundle/nerdtree
+[submodule "nvim/bundle/nerdtree"]
+	path = nvim/bundle/nerdtree
 	url = git://github.com/scrooloose/nerdtree.git
 [submodule "sack"]
 	path = sack
 	url = git@github.com:morhekil/sack.git
-[submodule "vim/bundle/vim-rake"]
-	path = vim/bundle/vim-rake
+[submodule "nvim/bundle/vim-rake"]
+	path = nvim/bundle/vim-rake
 	url = git://github.com/tpope/vim-rake.git
-[submodule "vim/bundle/vim-bundler"]
-	path = vim/bundle/vim-bundler
+[submodule "nvim/bundle/vim-bundler"]
+	path = nvim/bundle/vim-bundler
 	url = git://github.com/tpope/vim-bundler.git
-[submodule "vim/bundle/flake8"]
-	path = vim/bundle/flake8
+[submodule "nvim/bundle/flake8"]
+	path = nvim/bundle/flake8
 	url = git@github.com:nvie/vim-flake8.git
-[submodule "vim/bundle/vim-scala"]
-	path = vim/bundle/vim-scala
+[submodule "nvim/bundle/vim-scala"]
+	path = nvim/bundle/vim-scala
 	url = git@github.com:derekwyatt/vim-scala.git
-[submodule "vim/bundle/emmet-vim"]
-	path = vim/bundle/emmet-vim
-	url = https://github.com/mattn/emmet-vim.git
-[submodule "vim/bundle/blade"]
-	path = vim/bundle/blade
-	url = git@github.com:xsbeats/vim-blade.git
-[submodule "vim/bundle/vim-mustache-handlebars"]
-	path = vim/bundle/vim-mustache-handlebars
+[submodule "nvim/bundle/vim-mustache-handlebars"]
+	path = nvim/bundle/vim-mustache-handlebars
 	url = git://github.com/mustache/vim-mustache-handlebars.git
-[submodule "vim/bundle/vim-go"]
-	path = vim/bundle/vim-go
+[submodule "nvim/bundle/vim-go"]
+	path = nvim/bundle/vim-go
 	url = git@github.com:fatih/vim-go.git
-[submodule "vim/bundle/vim-ansible-yaml"]
-	path = vim/bundle/vim-ansible-yaml
+[submodule "nvim/bundle/vim-ansible-yaml"]
+	path = nvim/bundle/vim-ansible-yaml
 	url = git://github.com/chase/vim-ansible-yaml.git
