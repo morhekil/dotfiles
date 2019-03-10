@@ -4,8 +4,11 @@ local hyper = {"cmd", "alt", "ctrl", "shift"}
 hs.application.enableSpotlightForNameSearches(true)
 
 hs.hotkey.bind(hyper, "Q", function()
-  -- hs.application.launchOrFocus("Sequel Pro")
   hs.application.launchOrFocus("TablePlus")
+end)
+
+hs.hotkey.bind(hyper, "P", function()
+  hs.application.launchOrFocus("Sequel Pro")
 end)
 
 hs.hotkey.bind(hyper, "D", function()
