@@ -3,6 +3,18 @@ local hyper = {"cmd", "alt", "ctrl", "shift"}
 
 hs.application.enableSpotlightForNameSearches(true)
 
+hs.hotkey.bind(hyper, "A", function()
+  hs.application.launchOrFocus("The Archive")
+end)
+
+hs.hotkey.bind(hyper, "B", function()
+  hs.application.launchOrFocus("Obsidian")
+end)
+
+hs.hotkey.bind(hyper, "W", function()
+  hs.application.launchOrFocus("Visual Studio Code")
+end)
+
 hs.hotkey.bind(hyper, "Q", function()
   hs.application.launchOrFocus("TablePlus")
 end)
@@ -19,10 +31,10 @@ hs.hotkey.bind(hyper, "C", function()
   hs.application.launchOrFocus("Google Chrome")
 end)
 
-hs.hotkey.bind(hyper, "E", function()
-  -- hs.application.launchOrFocus("/usr/local/Cellar/emacs-mac/emacs-26.1-z-mac-7.1/Emacs.app")
-  hs.application.launchOrFocus("Emacs")
-end)
+-- hs.hotkey.bind(hyper, "E", function()
+--   -- hs.application.launchOrFocus("/usr/local/Cellar/emacs-mac/emacs-26.1-z-mac-7.1/Emacs.app")
+--   hs.application.launchOrFocus("Emacs")
+-- end)
 
 hs.hotkey.bind(hyper, "F", function()
   hs.application.launchOrFocus("iTerm")
