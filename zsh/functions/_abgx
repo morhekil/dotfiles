@@ -1,3 +1,0 @@
-#compdef abgx
-
-compadd `ls *iso`

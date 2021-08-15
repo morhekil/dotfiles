@@ -14,9 +14,7 @@ setopt HIST_IGNORE_DUPS
 setopt HIST_EXPIRE_DUPS_FIRST
 setopt hist_ignore_all_dups
 setopt extendedglob
-# setopt HIST_REDUCE_BLANKS
-# setopt correctall # commands correction
- 
+
 unsetopt beep
 
 # VIM key bindings
@@ -29,18 +27,11 @@ bindkey "^[[B" down-line-or-history
 # The following lines were added by compinstall
 zstyle :compinstall filename "$HOME/.zshrc"
 
-# gentoo TAB completion
+# tab completion
 autoload -U compinit promptinit zrecompile
 zsh_cache=${HOME}/.zsh/cache
 mkdir -p $zsh_cache
 compinit
-promptinit #; prompt gentoo
-zstyle ':completion:*' completer _complete _match _approximate
-zstyle ':completion:*:match:*' original only
-zstyle ':completion:*:approximate:*' max-errors 1 numeric
-zstyle ':completion::complete:*' use-cache 1
-zstyle ':completion:*:descriptions' format '%U%B%d%b%u'
-zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 
 # SSH hosts tab completion
 local _myhosts
@@ -52,14 +43,13 @@ MAGENTA="%{"$'\033[01;35m'"%}"
 BLUE="%{"$'\033[01;34m'"%}"
 BLACK="%{"$'\033[01;30m'"%}"
 NORM="%{"$'\033[00m'"%}"
-export PS1="${MAGENTA}%n@%m ${BLUE}%~ %#${NORM} "
 
-if [[ -f "$HOME/.amazon-keys" ]]; then
-  source "$HOME/.amazon-keys";
+if [ -z "$INSIDE_EMACS" ]; then
+  export PS1="${MAGENTA}%n@%m ${BLUE}%~ %#${NORM} "
 fi
 
 # local vars and alises
-alias apgmy='apg -a 1 -m 12 -M NCL -E O0I1l'
+alias apgmy="apg -a 1 -m 12 -M NCLs -E 'O0I1l(){}[]\"|~\/:;^\`'"
 alias apgmys='apg -a 0 -m 10 -M NCL -E O0I1l'
 
 # Set up vim path and EDITOR
@@ -95,9 +85,6 @@ fi
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-export SYMFONY_ENV="dev"
-export POKERRU_ENV="dev"
-export SCUMMVM_PORT="128:0"
 export RAILS_ENV="development"
 
 export PKG_CONFIG_PATH=/opt/local/lib/pkgconfig
@@ -114,11 +101,20 @@ fi
 # alias e='TERM=xterm emacs -nw'
 alias e='emacsclient -n'
 
-# Docker
-alias docker-clean="docker ps -a | grep Exited | awk '{ print \$1; }' | xargs -n1 docker rm"
-
 # HOMEBREW
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # direnv hook
 eval "$(direnv hook $0)"
+
+# The next line updates PATH for the Google Cloud SDK.
+source "${HOME}/google-cloud-sdk/path.zsh.inc"
+
+# The next line enables shell command completion for gcloud.
+source "${HOME}/google-cloud-sdk/completion.zsh.inc"
+
+# enable rbenv
+eval "$(rbenv init - --no-rehash)"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export PATH="/usr/local/opt/node@12/bin:$PATH"

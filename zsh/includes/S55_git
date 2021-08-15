@@ -136,16 +136,27 @@ function current_branch() {
   echo ${ref#refs/heads/}
 }
 
+# delete tracking branches which are gone on remote
+function git-delete-gone() {
+  git branch --list --format "%(if:equals=[gone])%(upstream:track)%(then)%(refname)%(end)" \
+    | sed 's,^refs/heads/,,;/^$/d' \
+    | xargs git branch -D
+}
+
 # these aliases take advantage of the previous function
 alias gad='git add --all'
-alias gf='git fetch --prune'
+alias gf='git fetch --prune && git-delete-gone'
 alias gsa='git stash save --include-untracked'
 alias gsp='git stash pop'
 alias gpl='git pull --ff-only origin $(current_branch)'
 compdef gpl=git
-alias gps='git push origin $(current_branch)'
+alias gps='git push -u origin $(current_branch)'
 compdef gps=git
+alias gpsf='git push -u --force-with-lease origin $(current_branch)'
+compdef gpsf=git
 alias gundo="git reset 'HEAD^1'"
+alias gco="git checkout"
+alias gci="git commit"
 alias gst="git status"
 alias gdi="git diff"
 alias gdic="git diff --cached"
