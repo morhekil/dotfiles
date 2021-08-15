@@ -212,7 +212,7 @@ before layers configuration."
 
   ;; automatically scale font when window size changed
   (defun mhl-font-scale-on-frame-width ()
-    (if (> (frame-width) 250) (text-scale-set 0.5) (text-scale-set 0)))
+    (if (> (frame-width) 350) (text-scale-set 0.5) (text-scale-set 0)))
   (add-hook 'window-configuration-change-hook 'mhl-font-scale-on-frame-width)
 )
 
