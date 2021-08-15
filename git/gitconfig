@@ -14,6 +14,8 @@
   b = branch
 [push]
 	default = "matching"
+[pull]
+	ff = only
 
 [mergetool]
 	keepBackup = true
@@ -27,3 +29,7 @@
 
 [diff "ansible-vault"]
       textconv = "ansible-vault view"
+[fetch]
+	prune = true
+[init]
+	defaultBranch = master
