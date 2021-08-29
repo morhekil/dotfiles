@@ -17,6 +17,11 @@ setopt extendedglob
 
 unsetopt beep
 
+export PATH="/usr/local/opt/node@12/bin:$PATH:/usr/local/opt"
+
+source /usr/local/opt/zinit/zinit.zsh
+zinit load marlonrichert/zsh-autocomplete
+
 # VIM key bindings
 bindkey -v
 # with some overrides
@@ -27,16 +32,8 @@ bindkey "^[[B" down-line-or-history
 # The following lines were added by compinstall
 zstyle :compinstall filename "$HOME/.zshrc"
 
-# tab completion
-autoload -U compinit promptinit zrecompile
 zsh_cache=${HOME}/.zsh/cache
 mkdir -p $zsh_cache
-compinit
-
-# SSH hosts tab completion
-local _myhosts
-_myhosts=( ${${${${(f)"$(<$HOME/.ssh/known_hosts)"}:#[0-9]*}%%\ *}%%,*} )
-zstyle ':completion:*' hosts $_myhosts
 
 # Colorized prompt
 MAGENTA="%{"$'\033[01;35m'"%}"
@@ -116,5 +113,12 @@ source "${HOME}/google-cloud-sdk/completion.zsh.inc"
 # enable rbenv
 eval "$(rbenv init - --no-rehash)"
 
+# zsh-autocomplete settings
+zstyle ':autocomplete:*' min-delay 0.2
+zstyle ':autocomplete:*' min-input 2
+zstyle ':autocomplete:*' recent-dirs fasd
+zstyle ':autocomplete:*' widget-style menu-complete
+zstyle ':autocomplete:*' fzf-completion yes
+zstyle ':autocomplete:*' list-lines 6
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-export PATH="/usr/local/opt/node@12/bin:$PATH"
