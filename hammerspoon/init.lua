@@ -31,6 +31,10 @@ hs.hotkey.bind(hyper, "C", function()
   hs.application.launchOrFocus("Google Chrome")
 end)
 
+hs.hotkey.bind(hyper, "X", function()
+  hs.application.launchOrFocus("Firefox")
+end)
+
 -- hs.hotkey.bind(hyper, "E", function()
 --   -- hs.application.launchOrFocus("/usr/local/Cellar/emacs-mac/emacs-26.1-z-mac-7.1/Emacs.app")
 --   hs.application.launchOrFocus("Emacs")
